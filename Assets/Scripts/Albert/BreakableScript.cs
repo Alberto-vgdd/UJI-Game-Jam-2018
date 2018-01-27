@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BreakableScript : MonoBehaviour {
 
+	public ParticleSystem shardSystem;
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
@@ -19,13 +20,18 @@ public class BreakableScript : MonoBehaviour {
 
 	void Explosion()
 	{
+		shardSystem.gameObject.SetActive (true);
+		shardSystem.transform.position = this.gameObject.transform.position;
+		shardSystem.Emit (100);
 		this.GetComponent<BoxCollider2D> ().enabled = false;
-		Invoke ("Reactivate", 2.0f);
+		Invoke ("Reactivate", 0.5f);
 	}
 
 	void Reactivate()
 	{
-		this.GetComponent<BoxCollider2D> ().enabled = true;
+		//this.GetComponent<BoxCollider2D> ().enabled = true;
+		//shardSystem.gameObject.SetActive (false);
+		Destroy (this.gameObject);
 	}
 
 	// Use this for initialization

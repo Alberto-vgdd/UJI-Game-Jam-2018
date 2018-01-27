@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Tienda : MonoBehaviour {
 
 	public GameObject fondoEstrellas;
+	public GameObject HUDTiendaEntero;
 
 	public int PrecioSalto;
 	public int PrecioDobleSalto;
@@ -73,9 +74,17 @@ public class Tienda : MonoBehaviour {
 
 	IEnumerator EsperarSalir(int segundos)
 	{
-		yield return new WaitForSeconds(segundos);
 		animacionEstrellas.Play ("TransicionFinalEstrellas");
-		tienda.SetActive (false);
+		yield return new WaitForSeconds(segundos);
+		StartCoroutine(EsperarSalir2(1));
+		//tienda.SetActive (false);
+	}
+
+	IEnumerator EsperarSalir2(int segundos)
+	{
+		
+		yield return new WaitForSeconds(segundos);
+		HUDTiendaEntero.SetActive(false);
 	}
 
 

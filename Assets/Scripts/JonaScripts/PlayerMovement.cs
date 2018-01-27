@@ -89,19 +89,6 @@ public class PlayerMovement : MonoBehaviour {
                 
         }
 
-        /*
-
-        if(Input.GetMouseButtonUp(0)){
-            if(m_IsSliding){
-                m_IsSliding = false;
-                Debug.Log("PUES ME PARO");
-                m_PlayerAnimator.SetInteger("AnimationState",11);
-                m_Presed = false;
-            }
-        }
-
-         */
-
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -114,7 +101,13 @@ public class PlayerMovement : MonoBehaviour {
                 if(!m_IsJumping){
                     if (Mathf.Abs(m_mouse.x - Input.mousePosition.x) > Mathf.Abs(m_mouse.y - Input.mousePosition.y))
                     {
-                        Dash();
+                         if (m_direction * (m_mouse.x - Input.mousePosition.x) > 0)
+                        {
+                            Turn();
+                        }else{
+                            Dash();
+                        }
+                            
                     }
                     else if(Mathf.Abs(m_mouse.x - Input.mousePosition.x) < Mathf.Abs(m_mouse.y - Input.mousePosition.y))
                     {
@@ -153,10 +146,24 @@ public class PlayerMovement : MonoBehaviour {
         m_Rigidbody2D.velocity = desiredVelocity;
         
         Debug.Log(Physics2D.gravity);
-        
-        //m_Rigidbody2D.AddForce(Physics2D.gravity);
         m_IsMoving = true;
         
+
+    }
+
+
+    void Turn(){
+
+        
+        if (m_mouse.x != Input.mousePosition.x)
+        {
+                
+                Debug.Log("Turn");
+               m_PlayerAnimator.SetInteger("AnimationState",12);
+               m_direction = m_direction * (-1);
+               transform.localScale = new Vector3(1 * m_direction, 1,1);
+
+        }
 
     }
 
@@ -164,18 +171,12 @@ public class PlayerMovement : MonoBehaviour {
 
         if (m_mouse.x != Input.mousePosition.x)
         {
-            if (m_direction * (m_mouse.x - Input.mousePosition.x) < 0)
-            {
+
                 m_IsDashing = true;
                 Debug.Log("Dasheando");
                 transform.position = transform.position + new Vector3(10f, 0, 0) * Time.deltaTime * m_direction;
                 m_Presed = false;
-            }
-            else {
-
-               m_direction = m_direction * (-1);
-                transform.localScale = new Vector3(1 * m_direction, 1,1);
-            }
+ 
         }
     }
 
