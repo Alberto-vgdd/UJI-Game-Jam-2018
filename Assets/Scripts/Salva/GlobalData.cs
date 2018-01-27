@@ -5,7 +5,7 @@ using UnityEngine;
 public class GlobalData : MonoBehaviour {
 
 
-	public static int experiencia = 123456;
+	public static int experiencia = 10000;
 	public static float metros;
 	public static bool saltoComprado;
 	public static bool dobleSaltoComprado;
