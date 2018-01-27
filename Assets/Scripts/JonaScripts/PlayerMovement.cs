@@ -11,12 +11,11 @@ public class PlayerMovement : MonoBehaviour {
     Rigidbody2D m_Rigidbody2D;
     BoxCollider2D m_BoxCollider2D;
 
-    public enum AnimationState{IDLE, RUNNING, JUMPING, MIDAIR, FALLING};
+    public enum AnimationState{IDLE, RUNNING, JUMPING, MIDAIR, FALLING, LANDING};
     public AnimationState m_AnimationState;
     public Animator m_PlayerAnimator;
     float m_NumberOfJumps;
 
-    bool m_IsGrounded = false;
     bool m_IsMoving = false;
 
     public PlayerAudioManager m_PlayerAudioManager;
@@ -25,15 +24,24 @@ public class PlayerMovement : MonoBehaviour {
 
         m_NumberOfJumps = m_jumps;
         if (coll.gameObject.tag == "Ground"){
+            
             if(m_AnimationState == AnimationState.FALLING){
-                m_PlayerAnimator.SetInteger("AnimationState",4);
+                m_PlayerAnimator.SetInteger("AnimationState", 4);
+
+            }else{
             }
-            m_AnimationState = AnimationState.RUNNING;
-            m_IsGrounded = true;
+            Invoke("Run",0.3f);
+
+            
+            
         }
 
     }
 
+
+    void Run(){
+        m_AnimationState = AnimationState.RUNNING;
+    }
 
 	void Awake () 
     {
@@ -44,14 +52,16 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () 
     {
         Move();
-        UpdateAnimation();
         CheckFall();
+        UpdateAnimation();
+        
 	}
 
     void CheckFall(){
         if(m_Rigidbody2D.velocity.y < 0 && (m_AnimationState == AnimationState.RUNNING || m_AnimationState == AnimationState.JUMPING)){
+            m_PlayerAnimator.SetInteger("AnimationState",0);
             m_AnimationState = AnimationState.FALLING;
-            m_NumberOfJumps = 0;
+            if(m_NumberOfJumps>1) m_NumberOfJumps--;
         }
     }
 
@@ -87,7 +97,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             m_AnimationState = AnimationState.JUMPING;
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpStrength);
-            
+            m_PlayerAnimator.SetInteger("AnimationState", 1);
         }
 
 
@@ -102,16 +112,8 @@ public class PlayerMovement : MonoBehaviour {
         if(m_AnimationState == AnimationState.RUNNING)
         {
             m_PlayerAnimator.SetInteger("AnimationState", 3);
+        }else if(m_AnimationState == AnimationState.LANDING){
         }
-        else if(m_AnimationState == AnimationState.JUMPING)
-        {
-            m_PlayerAnimator.SetInteger("AnimationState", 1);
-        }
-        else if(m_AnimationState == AnimationState.FALLING)
-        {
-            m_PlayerAnimator.SetInteger("AnimationState", 0);
-        }
-
     }
 
 
