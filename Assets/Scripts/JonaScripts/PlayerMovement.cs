@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour {
     public float m_jumps;
 
     Rigidbody2D m_Rigidbody2D;
-    public CapsuleCollider2D m_CapsuleCollider2D;
+    CapsuleCollider2D m_CapsuleCollider2D;
 
     public enum AnimationState{IDLE, RUNNING, JUMPING, MIDAIR, FALLING, LANDING, CROUCHING};
     public AnimationState m_AnimationState;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Awake () 
     {
-        m_CapsuleCollider2D = GetComponentInChildren<CapsuleCollider2D>();
+        m_CapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         m_DistanceToGround = m_CapsuleCollider2D.bounds.extents.y;
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
@@ -49,7 +49,6 @@ public class PlayerMovement : MonoBehaviour {
 
         if(hits.Length >=1){
             m_IsGrounded = true;
-
         }else{
             m_IsGrounded = false;
         }
@@ -87,7 +86,21 @@ public class PlayerMovement : MonoBehaviour {
         {
                 Jump();
                 m_Presed = false;
+                
         }
+
+        /*
+
+        if(Input.GetMouseButtonUp(0)){
+            if(m_IsSliding){
+                m_IsSliding = false;
+                Debug.Log("PUES ME PARO");
+                m_PlayerAnimator.SetInteger("AnimationState",11);
+                m_Presed = false;
+            }
+        }
+
+         */
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -189,8 +202,10 @@ public class PlayerMovement : MonoBehaviour {
 
         if (m_NumberOfJumps > 0)
         {
+            m_PlayerAnimator.SetInteger("AnimationState", 1);
             if(!m_IsSliding){
                 m_AnimationState = AnimationState.JUMPING;
+                
                 m_IsJumping = true;
                 m_NumberOfJumps--;
                 if(m_LastJump == 1){
@@ -206,7 +221,7 @@ public class PlayerMovement : MonoBehaviour {
                 }
                 
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpStrength);
-                m_PlayerAnimator.SetInteger("AnimationState", 1);
+                
                
             }
             

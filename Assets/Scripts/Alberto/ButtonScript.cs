@@ -20,6 +20,13 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 	public Image[] buttonPressedImages;
 
 	public Tienda tienda;
+	public GameObject tutorial;
+	public GameObject tutoSalto;
+	public GameObject tutoSaltoDoble;
+	public GameObject tutoDash;
+	public GameObject tutoAgacharse;
+	public GameObject tutoGirar;
+	public GameObject tutoSecreto;
 
 
 
@@ -97,6 +104,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 				//Disable this button
 				EnableButton(false);
+
+				tutorial.SetActive (true);
+				tutoSalto.SetActive (true);
+				StartCoroutine(EsperarCerrarTutorial(3));
 			}
 			else
 			{
@@ -112,6 +123,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 				//Disable this button
 				EnableButton(false);
+
+				tutorial.SetActive (true);
+				tutoSaltoDoble.SetActive (true);
+				StartCoroutine(EsperarCerrarTutorial(3));
 			}
 			else
 			{
@@ -127,6 +142,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 				
 				//Disable this button
 				EnableButton(false);
+
+				tutorial.SetActive (true);
+				tutoDash.SetActive (true);
+				StartCoroutine(EsperarCerrarTutorial(3));
 			}
 			else
 			{
@@ -142,6 +161,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 				
 				//Disable this button
 				EnableButton(false);
+
+				tutorial.SetActive (true);
+				tutoGirar.SetActive (true);
+				StartCoroutine(EsperarCerrarTutorial(3));
 			}
 			else
 			{
@@ -157,6 +180,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 				
 				//Disable this button
 				EnableButton(false);
+
+				tutorial.SetActive (true);
+				tutoAgacharse.SetActive (true);
+				StartCoroutine(EsperarCerrarTutorial(3));
 			}
 			else
 			{
@@ -172,6 +199,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 				
 				//Disable this button
 				EnableButton(false);
+
+				tutorial.SetActive (true);
+				tutoSecreto.SetActive (true);
+				StartCoroutine(EsperarCerrarTutorial(3));
 			}
 			else
 			{
@@ -180,7 +211,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 			}
 			break;
 		case "Salir":
-			tienda.SalirTienda ();
+			HUDManagerScript.instance.UseButton(3);
 
 			// Enable released button gameobject
 			buttonGameObjects[1].SetActive(true);
@@ -190,7 +221,18 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 		}
 	}
 
+	IEnumerator EsperarCerrarTutorial(int segundos)
+	{
+		yield return new WaitForSeconds(segundos);
+		tutorial.SetActive (false);
+		tutoSalto.SetActive (false);
+		tutoSaltoDoble.SetActive (false);
+		tutoGirar.SetActive (false);
+		tutoAgacharse.SetActive (false);
+		tutoDash.SetActive (false);
+		tutoSecreto.SetActive (false);
 
+	}
 
 
 
