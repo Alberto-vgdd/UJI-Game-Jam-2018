@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll){
 
-        float m_NumberOfJumps = m_jumps;
+        m_NumberOfJumps = m_jumps;
         if (coll.gameObject.tag == "Ground"){
             m_AnimationState = AnimationState.RUNNING;
             m_IsGrounded = true;
@@ -34,7 +34,9 @@ public class PlayerMovement : MonoBehaviour {
     {
         if(m_Rigidbody2D.velocity.y < 0 && m_IsGrounded){
             m_AnimationState = AnimationState.FALLING;
+            m_NumberOfJumps = 0;
         }
+        
     }
 
 
@@ -56,32 +58,37 @@ public class PlayerMovement : MonoBehaviour {
         
     }
 
-    void Move() 
+    void Move()
     {
-        
+        print(m_NumberOfJumps);
         m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * Time.deltaTime, m_Rigidbody2D.velocity.y);
         m_IsMoving = true;
+        if (((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetKeyDown("space")) && m_NumberOfJumps > 0)
+        {
+            Jump();
+        }
+        /*else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
 
-        
+            m_Rigidbody2D.AddForce(new Vector2(m_DashForce * Time.deltaTime, 0));
+        }*/
+
+
+
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    void Jump()
     {
-        
-        if (((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)  || Input.GetKeyDown("space")) && m_NumberOfJumps > 0 )
+
+        if (m_NumberOfJumps > 0)
         {
             m_NumberOfJumps--;
             m_AnimationState = AnimationState.JUMPING;
-            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpStrength * Time.deltaTime);
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpStrength);
         }
 
-        if (collision.gameObject.tag == "Ground") {
-
-            m_NumberOfJumps = m_jumps;
-            m_IsGrounded = true;
-        }
 
     }
+
 
 
 
