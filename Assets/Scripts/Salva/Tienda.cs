@@ -38,14 +38,18 @@ public class Tienda : MonoBehaviour {
 		if (GlobalData.girarComprado) BotonGirar.interactable = false;
 		if (GlobalData.agacharseComprado) BotonAgacharse.interactable = false;
 		if (GlobalData.secretoComprado) BotonSecreto.interactable = false;
+		Actualizar ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
+	}
+
+	public void Actualizar(){
 		experienciaActual.text = GlobalData.experiencia + "xp";
 		distanciaMaxima.text = GlobalData.metros + "m";
 	}
-
 
 	public void ComprarMejora(string nombre){
 		switch(nombre){
