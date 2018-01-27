@@ -101,9 +101,7 @@ public class PlayerMovement : MonoBehaviour {
                 if(!m_IsJumping){
                     if (Mathf.Abs(m_mouse.x - Input.mousePosition.x) > Mathf.Abs(m_mouse.y - Input.mousePosition.y))
                     {
-                        m_IsDashing = true;
                         Dash();
-
                     }
                     else if(Mathf.Abs(m_mouse.x - Input.mousePosition.x) < Mathf.Abs(m_mouse.y - Input.mousePosition.y))
                     {
@@ -111,7 +109,11 @@ public class PlayerMovement : MonoBehaviour {
                         Slide();
                     }
                 }
+        }
 
+        if(Input.GetMouseButtonUp(0)){
+            m_IsDashing = false;
+            m_IsSliding = false;
         }
     }
 
@@ -148,14 +150,11 @@ public class PlayerMovement : MonoBehaviour {
 
         if (m_mouse.x != Input.mousePosition.x)
         {
-            if(m_IsDashing){
+                m_IsDashing = true;
                 Debug.Log("Dasheando");
                 transform.position = transform.position + new Vector3(10f,0,0) * Time.deltaTime;
                 m_Presed = false;
-                Invoke("StopDashing",0.5f);
-            }
-                
-
+            
         }
     }
 
