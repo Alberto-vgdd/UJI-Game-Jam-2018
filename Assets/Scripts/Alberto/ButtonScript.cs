@@ -180,7 +180,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 			}
 			break;
 		case "Salir":
-			tienda.SalirTienda ();
+			HUDManagerScript.instance.UseButton(3);
 
 			// Enable released button gameobject
 			buttonGameObjects[1].SetActive(true);
