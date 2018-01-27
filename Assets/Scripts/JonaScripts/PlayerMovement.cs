@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     Rigidbody2D m_Rigidbody2D;
     BoxCollider2D m_BoxCollider2D;
 
-    public enum AnimationState{IDLE, RUNNING, JUMPING, MIDAIR, FALLING};
+    public enum AnimationState{IDLE, RUNNING, JUMPING, MIDAIR, FALLING, LANDING};
     public AnimationState m_AnimationState;
     public Animator m_PlayerAnimator;
     float m_NumberOfJumps;
@@ -26,10 +26,14 @@ public class PlayerMovement : MonoBehaviour {
         m_NumberOfJumps = m_jumps;
         if (coll.gameObject.tag == "Ground"){
             if(m_AnimationState == AnimationState.FALLING){
-                m_PlayerAnimator.SetInteger("AnimationState",4);
+                m_AnimationState = AnimationState.LANDING;
+
+            }else{
+                m_AnimationState = AnimationState.RUNNING;
             }
-            m_AnimationState = AnimationState.RUNNING;
+            
             m_IsGrounded = true;
+            
         }
 
     }
@@ -49,7 +53,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
     void CheckFall(){
-        if(m_Rigidbody2D.velocity.y < 0 && (m_AnimationState == AnimationState.RUNNING || m_AnimationState == AnimationState.JUMPING)){
+        if(m_Rigidbody2D.velocity.y < -0.1f && (m_AnimationState == AnimationState.RUNNING || m_AnimationState == AnimationState.JUMPING)){
+            m_PlayerAnimator.SetInteger("AnimationState",0);
             m_AnimationState = AnimationState.FALLING;
             m_NumberOfJumps = 0;
         }
@@ -87,7 +92,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             m_AnimationState = AnimationState.JUMPING;
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpStrength);
-            
+            m_PlayerAnimator.SetInteger("AnimationState", 1);
         }
 
 
@@ -102,16 +107,10 @@ public class PlayerMovement : MonoBehaviour {
         if(m_AnimationState == AnimationState.RUNNING)
         {
             m_PlayerAnimator.SetInteger("AnimationState", 3);
+        }else if(m_AnimationState == AnimationState.LANDING){
+            m_PlayerAnimator.SetInteger("AnimationState", 4);
+            
         }
-        else if(m_AnimationState == AnimationState.JUMPING)
-        {
-            m_PlayerAnimator.SetInteger("AnimationState", 1);
-        }
-        else if(m_AnimationState == AnimationState.FALLING)
-        {
-            m_PlayerAnimator.SetInteger("AnimationState", 0);
-        }
-
     }
 
 
