@@ -9,7 +9,9 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 	public string accion;
 
+	// Variables to enable/disable this button.
 	private GameObject[] buttonGameObjects;
+	private bool buttonEnabled;
 
 	// Images to asign materials when the color scheme changes.
 	[Header("Place here the images separated by color")]
@@ -18,6 +20,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 	public Image[] buttonPressedImages;
 
 	public Tienda tienda;
+
 
 
 
@@ -32,20 +35,28 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 			buttonGameObjects[i] = transform.GetChild(i).gameObject;
 		}
 
+		buttonEnabled = true;
+
 	}
 
 
 	public void OnPointerDown(PointerEventData eventData)
     {
-		ComprarMejora (accion);
-		// Disable released button gameobject
-		buttonGameObjects[1].SetActive(false);
+		if (buttonEnabled)
+		{
+			// Enable released button gameobject
+			buttonGameObjects[1].SetActive(false);
+		}
+
     }
 
 	public void OnPointerUp(PointerEventData eventData)
     {
-		// Enable released button gameobject
-		buttonGameObjects[1].SetActive(true);
+		if (buttonEnabled)
+		{
+			// The button will be disabled here.
+			UsarBoton (accion);
+		}
     }
 
 
@@ -68,60 +79,111 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 		}
 	}
 
-	public void ComprarMejora(string nombre){
+	public void EnableButton(bool isEnabled)
+	{
+		// Enable/Disable this button
+		buttonEnabled = isEnabled;
+	}
+
+	public void UsarBoton(string nombre)
+	{
 		
 		switch(nombre){
 		case "Salto":
 			if (GlobalData.experiencia >= tienda.PrecioSalto && GlobalData.saltoComprado == false) {
-				print ("HOLA");
-				//BotonSalto.interactable = false;
 				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioSalto;
 				GlobalData.saltoComprado = true;
 				tienda.Actualizar ();
+
+				//Disable this button
+				EnableButton(false);
+			}
+			else
+			{
+				// Enable released button gameobject
+				buttonGameObjects[1].SetActive(true);
 			}
 			break;
 		case "DobleSalto":
 			if (GlobalData.experiencia >= tienda.PrecioDobleSalto && GlobalData.dobleSaltoComprado == false) {
-				//BotonDobleSalto.interactable = false;
 				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioDobleSalto;
 				GlobalData.dobleSaltoComprado = true;
 				tienda.Actualizar ();
+
+				//Disable this button
+				EnableButton(false);
+			}
+			else
+			{
+				// Enable released button gameobject
+				buttonGameObjects[1].SetActive(true);
 			}
 			break;
 		case "Dash":
 			if (GlobalData.experiencia >= tienda.PrecioDash && GlobalData.dashComprado == false) {
-				//BotonDash.interactable = false;
 				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioDash;
 				GlobalData.dashComprado = true;
 				tienda.Actualizar ();
+				
+				//Disable this button
+				EnableButton(false);
+			}
+			else
+			{
+				// Enable released button gameobject
+				buttonGameObjects[1].SetActive(true);
 			}
 			break;
 		case "Girar":
 			if (GlobalData.experiencia >= tienda.PrecioGirar && GlobalData.girarComprado == false) {
-				//BotonGirar.interactable = false;
 				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioGirar;
 				GlobalData.girarComprado = true;
 				tienda.Actualizar ();
+				
+				//Disable this button
+				EnableButton(false);
+			}
+			else
+			{
+				// Enable released button gameobject
+				buttonGameObjects[1].SetActive(true);
 			}
 			break;
 		case "Agacharse":
 			if (GlobalData.experiencia >= tienda.PrecioAgacharse && GlobalData.agacharseComprado == false) {
-				//BotonAgacharse.interactable = false;
 				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioAgacharse;
 				GlobalData.agacharseComprado = true;
 				tienda.Actualizar ();
+				
+				//Disable this button
+				EnableButton(false);
+			}
+			else
+			{
+				// Enable released button gameobject
+				buttonGameObjects[1].SetActive(true);
 			}
 			break;
 		case "Secreto":
 			if (GlobalData.experiencia >= tienda.PrecioSecreto && GlobalData.secretoComprado == false) {
-				//BotonSecreto.interactable = false;
 				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioSecreto;
 				GlobalData.secretoComprado = true;
 				tienda.Actualizar ();
+				
+				//Disable this button
+				EnableButton(false);
+			}
+			else
+			{
+				// Enable released button gameobject
+				buttonGameObjects[1].SetActive(true);
 			}
 			break;
 		case "Salir":
 			tienda.SalirTienda ();
+
+			// Enable released button gameobject
+			buttonGameObjects[1].SetActive(true);
 			break;
 		default:
 			break;
