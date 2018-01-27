@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour {
     public float m_jumps;
 
     Rigidbody2D m_Rigidbody2D;
-    public BoxCollider2D m_BoxCollider2D;
+    public CapsuleCollider2D m_CapsuleCollider2D;
 
     public enum AnimationState{IDLE, RUNNING, JUMPING, MIDAIR, FALLING, LANDING, CROUCHING};
     public AnimationState m_AnimationState;
@@ -37,20 +37,20 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Awake () 
     {
-        m_BoxCollider2D = GetComponentInChildren<BoxCollider2D>();
-        m_DistanceToGround = m_BoxCollider2D.bounds.extents.y;
+        m_CapsuleCollider2D = GetComponentInChildren<CapsuleCollider2D>();
+        m_DistanceToGround = m_CapsuleCollider2D.bounds.extents.y;
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
 
     void CheckIfGrounded(){
 
-        RaycastHit2D hit;
-        hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y-m_DistanceToGround), Vector2.down, 0.01f);
-        if(hit.collider != null){
+        RaycastHit2D[] hits;
+        hits = Physics2D.CapsuleCastAll(new Vector2(transform.position.x, transform.position.y), m_CapsuleCollider2D.bounds.size, CapsuleDirection2D.Vertical, 0f, Vector2.down, 0.05f, LayerMask.GetMask("Ground"));
+
+        if(hits.Length >=1){
             m_IsGrounded = true;
-        }
-        else
-        {
+
+        }else{
             m_IsGrounded = false;
         }
     }
@@ -128,20 +128,21 @@ public class PlayerMovement : MonoBehaviour {
 
     void Move()
     {
-        m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * m_direction * Time.deltaTime, m_Rigidbody2D.velocity.y);
-        m_IsMoving = true;
-        /*
-        if (((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetKeyDown("space")) && m_NumberOfJumps > 0)
-        {
-            Jump();
+        Vector2 desiredVelocity = new Vector2(m_MovementSpeed * m_direction, m_Rigidbody2D.velocity.y);
+
+        RaycastHit2D[] hits = Physics2D.CapsuleCastAll(new Vector2(transform.position.x, transform.position.y) + m_CapsuleCollider2D.offset, m_CapsuleCollider2D.bounds.size, CapsuleDirection2D.Horizontal, 0f, Vector2.right * m_direction, m_Rigidbody2D.velocity.x * Time.deltaTime, LayerMask.GetMask("Ground"));
+
+    
+        if(hits.Length >= 1){
+            desiredVelocity.x = 0;
+            
         }
-         */
-
-        /*else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
-
-            m_Rigidbody2D.AddForce(new Vector2(m_DashForce * Time.deltaTime, 0));
-        }*/
-
+        m_Rigidbody2D.velocity = desiredVelocity;
+        
+        Debug.Log(Physics2D.gravity);
+        
+        //m_Rigidbody2D.AddForce(Physics2D.gravity);
+        m_IsMoving = true;
         
 
     }
@@ -175,7 +176,7 @@ public class PlayerMovement : MonoBehaviour {
                     m_AnimationState = AnimationState.CROUCHING;
                     m_PlayerAnimator.SetInteger("AnimationState", 7);
                     m_Presed = false;
-                    Invoke("StopSliding", 1.0f);
+                    Invoke("StopSliding", 0.5f);
                 }
                 
             

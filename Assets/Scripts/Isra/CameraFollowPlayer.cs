@@ -14,6 +14,6 @@ public class CameraFollowPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		transform.position = Vector3.SmoothDamp(transform.position, m_CameraTarget.position - new Vector3(0,0,10), ref velocity, m_CameraSmoothTime);
+		transform.position = Vector3.SmoothDamp(transform.position, m_CameraTarget.position - new Vector3(0,-1.5f,10), ref velocity, m_CameraSmoothTime);
 	}
 }

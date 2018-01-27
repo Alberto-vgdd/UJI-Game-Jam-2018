@@ -27,14 +27,8 @@ GameObject:
   - component: {fileID: 82118659283688002}
   - component: {fileID: 82334156552513430}
   - component: {fileID: 82581696069707686}
-<<<<<<< HEAD
   - component: {fileID: 82908087798646726}
-<<<<<<< HEAD
-=======
->>>>>>> parent of 8bfe1e8... ESTO YA FUNCIONA
-=======
   - component: {fileID: 70152753461050438}
->>>>>>> master
   m_Layer: 0
   m_Name: Player Sprite
   m_TagString: Player
@@ -282,7 +276,6 @@ AudioSource:
     m_PostInfinity: 2
     m_RotationOrder: 0
 --- !u!82 &82577023054237338
-<<<<<<< HEAD
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -363,8 +356,6 @@ AudioSource:
     m_PostInfinity: 2
     m_RotationOrder: 0
 --- !u!82 &82581696069707686
-=======
->>>>>>> parent of 8bfe1e8... ESTO YA FUNCIONA
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -635,17 +626,13 @@ MonoBehaviour:
   m_MovementSpeed: 5
   m_JumpStrength: 9
   m_jumps: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-  m_DashForce: 0
-  m_BoxCollider2D: {fileID: 61911283708947378}
-=======
->>>>>>> parent of 8bfe1e8... ESTO YA FUNCIONA
-=======
-  m_CapsuleCollider2D: {fileID: 70152753461050438}
->>>>>>> master
+  m_CapsuleCollider2D: {fileID: 0}
   m_AnimationState: 1
   m_PlayerAnimator: {fileID: 95701613287720774}
+  m_IsSliding: 0
+  m_IsDashing: 0
+  m_IsJumping: 0
+  m_IsGrounded: 0
   m_PlayerAudioManager: {fileID: 114825349878854692}
 --- !u!114 &114825349878854692
 MonoBehaviour:
@@ -663,10 +650,7 @@ MonoBehaviour:
   m_PlayerDoubleJumpAudioSource: {fileID: 82118659283688002}
   m_PlayerDeathAudioSource: {fileID: 82334156552513430}
   m_PlayerScreamAudioSource: {fileID: 82581696069707686}
-<<<<<<< HEAD
   m_PlayerSlideAudioSource: {fileID: 82908087798646726}
-=======
->>>>>>> parent of 8bfe1e8... ESTO YA FUNCIONA
 --- !u!212 &212421126158082904
 SpriteRenderer:
   m_ObjectHideFlags: 1
