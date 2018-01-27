@@ -9,7 +9,9 @@ public class SlidableScript : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Player") 
 		{
-			if (other.gameObject.GetComponentInParent<PlayerMovement> ().m_IsSliding) 
+			if (other.gameObject.GetComponentInParent<PlayerMovement> ().m_IsSliding
+				|| other.gameObject.GetComponentInParent<PlayerMovement>().m_IsDashing &&
+				other.gameObject.GetComponentInParent<PlayerMovement> ().m_IsSliding) 
 			{
 				DeactivateSlidable ();
 			}
@@ -20,13 +22,13 @@ public class SlidableScript : MonoBehaviour {
 	void DeactivateSlidable()
 	{
 		this.GetComponent<BoxCollider2D> ().enabled = false;
-		print ("SE DESACTIVA");
+		//print ("SE DESACTIVA");
 		Invoke ("ActivateSlidable", 2.0f);
 	}
 
 	void ActivateSlidable()
 	{
-		print ("SE ACTIVA");
+		//print ("SE ACTIVA");
 		this.GetComponent<BoxCollider2D> ().enabled = true;
 	}
 
