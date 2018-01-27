@@ -5996,6 +5996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fondoEstrellas: {fileID: 1802979061802838}
+  HUDTiendaEntero: {fileID: 0}
   PrecioSalto: 9999
   PrecioDobleSalto: 9999
   PrecioDash: 9999
