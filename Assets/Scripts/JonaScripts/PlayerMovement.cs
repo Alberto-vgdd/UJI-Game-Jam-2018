@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
     public float m_MovementSpeed;
     public float m_JumpStrength;
     public float m_jumps;
+    public float m_DashForce;
 
     Rigidbody2D m_Rigidbody2D;
     public BoxCollider2D m_BoxCollider2D;
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour {
     float m_NumberOfJumps;
     float m_DistanceToGround;
 
+    Vector3 m_mouse;
+    bool m_Presed = false;
     bool m_IsMoving = false;
     public bool m_IsGrounded = false;
     public PlayerAudioManager m_PlayerAudioManager;
@@ -90,17 +93,45 @@ public class PlayerMovement : MonoBehaviour {
             Jump();
         }
          */
-        
+
         /*else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
 
             m_Rigidbody2D.AddForce(new Vector2(m_DashForce * Time.deltaTime, 0));
         }*/
 
-
-        if(Input.GetMouseButtonDown(0)){
-            if(m_NumberOfJumps > 0){
+        if (Input.GetMouseButtonUp(0) && m_Presed)
+        {
+            if (m_NumberOfJumps > 0)
+            {
                 Jump();
+                m_Presed = false;
             }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            m_Presed = true;
+            m_mouse = Input.mousePosition;
+        }
+
+        if (Input.GetMouseButton(0) && m_Presed && m_IsGrounded)
+        {
+
+            if (m_mouse.x != Input.mousePosition.x)
+            {
+
+                m_Rigidbody2D.velocity = new Vector2(m_DashForce, m_Rigidbody2D.velocity.y);
+                m_Presed = false;
+
+            }
+            else if (m_mouse.y != Input.mousePosition.y)
+            {
+
+                m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * Time.deltaTime, m_DashForce);
+                m_Presed = false;
+            }
+
         }
 
 
