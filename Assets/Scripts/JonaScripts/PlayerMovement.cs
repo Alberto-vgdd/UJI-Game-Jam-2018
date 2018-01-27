@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour {
     private void OnCollisionStay2D(Collision2D collision)
     {
         
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && m_NumberOfJumps > 0 )
+        if (((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)  || Input.GetKeyDown("space")) && m_NumberOfJumps > 0 )
         {
             m_NumberOfJumps--;
             m_AnimationState = AnimationState.JUMPING;
