@@ -9,7 +9,7 @@ public class PlayerAudioManager : MonoBehaviour {
 	public AudioSource m_PlayerDoubleJumpAudioSource;
 	public AudioSource m_PlayerDeathAudioSource;
 	public AudioSource m_PlayerScreamAudioSource;
-
+	public AudioSource m_PlayerSlideAudioSource;
 
 	public void PlayJumpSound(){
 		m_PlayerJumpAudioSource.Play();
@@ -25,6 +25,10 @@ public class PlayerAudioManager : MonoBehaviour {
 
 	public void PlayScreamSound(){
 		m_PlayerScreamAudioSource.Play();
+	}
+
+	public void PlaySlideSound(){
+		m_PlayerSlideAudioSource.Play();
 	}
 
 
