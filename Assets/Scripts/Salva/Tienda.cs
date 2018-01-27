@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Tienda : MonoBehaviour {
 
+	public GameObject fondoEstrellas;
+
 	public int PrecioSalto;
 	public int PrecioDobleSalto;
 	public int PrecioDash;
@@ -24,14 +26,14 @@ public class Tienda : MonoBehaviour {
 	public Text distanciaMaxima;
 
 	private GameObject tienda;
-	private Animator animacion;
+	private Animation animacionTienda;
+	private Animation animacionEstrellas;
 
 
 	// Use this for initialization
 	void Start () {
 		tienda = this.gameObject;
-		animacion = this.gameObject.GetComponent<Animator> ();
-		animacion.enabled = false;
+
 		if (GlobalData.saltoComprado) BotonSalto.EnableButton(false);
 		if (GlobalData.dobleSaltoComprado) BotonDobleSalto.EnableButton(false);
 		if (GlobalData.dashComprado) BotonDash.EnableButton(false);
@@ -39,6 +41,13 @@ public class Tienda : MonoBehaviour {
 		if (GlobalData.agacharseComprado) BotonAgacharse.EnableButton(false);
 		if (GlobalData.secretoComprado) BotonSecreto.EnableButton(false);
 		Actualizar ();
+
+		animacionTienda = this.gameObject.GetComponent<Animation> ();
+		animacionTienda.Play ("TransicionInicialTienda");
+
+		fondoEstrellas.SetActive (true);
+		animacionEstrellas = fondoEstrellas.GetComponent<Animation> ();
+		animacionEstrellas.Play ("TransicionInicialEstrellas");
 	}
 	
 	// Update is called once per frame
@@ -50,52 +59,9 @@ public class Tienda : MonoBehaviour {
 		experienciaActual.text = GlobalData.experiencia + "xp";
 		distanciaMaxima.text = GlobalData.metros + "m";
 	}
-
-	// public void ComprarMejora(string nombre){
-	// 	switch(nombre){
-	// 	case "Salto":
-	// 		if (GlobalData.experiencia >= PrecioSalto) {
-	// 			BotonSalto.interactable = false;
-	// 			GlobalData.experiencia = GlobalData.experiencia - PrecioSalto;
-	// 		}
-	// 				break;
-	// 	case "DobleSalto":
-	// 		if (GlobalData.experiencia >= PrecioDobleSalto) {
-	// 			BotonDobleSalto.interactable = false;
-	// 			GlobalData.experiencia = GlobalData.experiencia - PrecioDobleSalto;
-	// 		}
-	// 				break;
-	// 	case "Dash":
-	// 		if (GlobalData.experiencia >= PrecioDash) {
-	// 			BotonDash.interactable = false;
-	// 			GlobalData.experiencia = GlobalData.experiencia - PrecioDash;
-	// 		}
-	// 				break;
-	// 	case "Girar":
-	// 		if (GlobalData.experiencia >= PrecioGirar) {
-	// 			BotonGirar.interactable = false;
-	// 			GlobalData.experiencia = GlobalData.experiencia - PrecioGirar;
-	// 		}
-	// 				break;
-	// 	case "Agacharse":
-	// 		if (GlobalData.experiencia >= PrecioAgacharse) {
-	// 			BotonAgacharse.interactable = false;
-	// 			GlobalData.experiencia = GlobalData.experiencia - PrecioAgacharse;
-	// 		}
-	// 				break;
-	// 	case "Secreto":
-	// 		if (GlobalData.experiencia >= PrecioSecreto) {
-	// 			BotonSecreto.interactable = false;
-	// 			GlobalData.experiencia = GlobalData.experiencia - PrecioSecreto;
-	// 		}
-	// 				break;
-	// 		default:
-	// 			break;
-	// 	}
-	// }
-
+		
 	public void SalirTienda(){
-		animacion.enabled = true;
+		animacionTienda.Play ("TransicionFinalTienda");
 		StartCoroutine(EsperarSalir(1));
 
 	}
@@ -104,6 +70,7 @@ public class Tienda : MonoBehaviour {
 	IEnumerator EsperarSalir(int segundos)
 	{
 		yield return new WaitForSeconds(segundos);
+		animacionEstrellas.Play ("TransicionFinalEstrellas");
 		tienda.SetActive (false);
 	}
 }
