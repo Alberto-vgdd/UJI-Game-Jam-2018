@@ -9,18 +9,34 @@ public class PlayerMovement : MonoBehaviour {
     public float m_jumps;
 
     Rigidbody2D m_Rigidbody2D;
-    public BoxCollider2D m_BoxCollider2D;
+    BoxCollider2D m_BoxCollider2D;
 
     public enum AnimationState{IDLE, RUNNING, JUMPING, MIDAIR, FALLING, LANDING};
     public AnimationState m_AnimationState;
     public Animator m_PlayerAnimator;
     float m_NumberOfJumps;
-    float m_DistanceToGround;
 
     bool m_IsMoving = false;
-    public bool m_IsGrounded = false;
 
     public PlayerAudioManager m_PlayerAudioManager;
+
+    void OnCollisionEnter2D(Collision2D coll){
+
+        m_NumberOfJumps = m_jumps;
+        if (coll.gameObject.tag == "Ground"){
+            
+            if(m_AnimationState == AnimationState.FALLING){
+                m_PlayerAnimator.SetInteger("AnimationState", 4);
+
+            }else{
+            }
+            Invoke("Run",0.3f);
+
+            
+            
+        }
+
+    }
 
 
     void Run(){
@@ -29,43 +45,14 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Awake () 
     {
+        m_BoxCollider2D = GetComponent<BoxCollider2D>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        m_DistanceToGround = m_BoxCollider2D.bounds.extents.y;
 	}
-
-    void CheckIfGrounded(){
-
-        RaycastHit2D hit;
-        hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y-m_DistanceToGround), Vector2.down, 0.01f);
-        if(hit.collider != null){
-            m_IsGrounded = true;
-        }
-        else
-        {
-            m_IsGrounded = false;
-        }
-    }
-
-    void OnGrounded(){
-        if(m_IsGrounded)
-        {
-            m_NumberOfJumps = m_jumps;
-            
-            if(m_AnimationState == AnimationState.FALLING)
-            {
-                m_PlayerAnimator.SetInteger("AnimationState", 4);
-            }
-            Invoke("Run",0.3f);            
-            
-        }
-    }
 	
 	void Update () 
     {
         Move();
         CheckFall();
-        CheckIfGrounded();
-        OnGrounded();
         UpdateAnimation();
         
 	}
@@ -81,6 +68,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Move()
     {
+        print(m_NumberOfJumps);
         m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * Time.deltaTime, m_Rigidbody2D.velocity.y);
         m_IsMoving = true;
         /*
