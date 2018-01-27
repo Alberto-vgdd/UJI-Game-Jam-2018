@@ -30,8 +30,10 @@ public class Tienda : MonoBehaviour {
 	private Animation animacionEstrellas;
 
 
+
 	// Use this for initialization
-	void Start () {
+	public void EntrarTienda () 
+	{
 		tienda = this.gameObject;
 
 		if (GlobalData.saltoComprado) BotonSalto.EnableButton(false);
@@ -43,11 +45,13 @@ public class Tienda : MonoBehaviour {
 		Actualizar ();
 
 		animacionTienda = this.gameObject.GetComponent<Animation> ();
-		animacionTienda.Play ("TransicionInicialTienda");
+		animacionTienda.Play ("TransicionInicialTienda",PlayMode.StopAll);
 
 		fondoEstrellas.SetActive (true);
 		animacionEstrellas = fondoEstrellas.GetComponent<Animation> ();
-		animacionEstrellas.Play ("TransicionInicialEstrellas");
+		animacionEstrellas.Play ("TransicionInicialEstrellas",PlayMode.StopAll);
+
+		Debug.Log("123123");
 	}
 	
 	// Update is called once per frame
@@ -73,4 +77,6 @@ public class Tienda : MonoBehaviour {
 		animacionEstrellas.Play ("TransicionFinalEstrellas");
 		tienda.SetActive (false);
 	}
+
+
 }

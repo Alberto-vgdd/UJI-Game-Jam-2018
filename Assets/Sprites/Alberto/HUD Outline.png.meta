@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d261a3cafa93b494c9c5fbd6d563e03a
-timeCreated: 1517045391
+timeCreated: 1517077872
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -19,6 +19,13 @@ TextureImporter:
     21300024: HUD Outline_12
     21300026: HUD Outline_13
     21300028: HUD Outline_14
+    21300030: HUD Outline_15
+    21300032: HUD Outline_16
+    21300034: HUD Outline_17
+    21300036: HUD Outline_18
+    21300038: HUD Outline_19
+    21300040: HUD Outline_20
+    21300042: HUD Outline_21
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -306,6 +313,104 @@ TextureImporter:
         serializedVersion: 2
         x: 96
         y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD Outline_15
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD Outline_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD Outline_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD Outline_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD Outline_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD Outline_20
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD Outline_21
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
         width: 16
         height: 16
       alignment: 0
