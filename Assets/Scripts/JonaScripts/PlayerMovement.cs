@@ -71,18 +71,29 @@ public class PlayerMovement : MonoBehaviour {
         print(m_NumberOfJumps);
         m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * Time.deltaTime, m_Rigidbody2D.velocity.y);
         m_IsMoving = true;
+        /*
         if (((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetKeyDown("space")) && m_NumberOfJumps > 0)
         {
             Jump();
         }
+         */
+        
         /*else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
 
             m_Rigidbody2D.AddForce(new Vector2(m_DashForce * Time.deltaTime, 0));
         }*/
 
 
+        if(Input.GetMouseButtonDown(0)){
+            if(m_NumberOfJumps > 0){
+                Jump();
+            }
+        }
+
+
 
     }
+
 
     void Jump()
     {
