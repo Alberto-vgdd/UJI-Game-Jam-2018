@@ -118,26 +118,44 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetMouseButton(0) && m_Presed && m_IsGrounded)
         {
 
-            if (m_mouse.x != Input.mousePosition.x)
+            if (Mathf.Abs(m_mouse.x - Input.mousePosition.x) > Mathf.Abs(m_mouse.y - Input.mousePosition.y))
             {
 
-                m_Rigidbody2D.velocity = new Vector2(m_DashForce, m_Rigidbody2D.velocity.y);
-                m_Presed = false;
+                Dash();
 
             }
-            else if (m_mouse.y != Input.mousePosition.y)
-            {
+            else {
 
-                m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * Time.deltaTime, m_DashForce);
-                m_Presed = false;
+                Slide();
+
             }
+            
+           
 
         }
 
-
-
     }
 
+    void Dash() {
+
+        if (m_mouse.x != Input.mousePosition.x)
+        {
+
+            m_Rigidbody2D.velocity = new Vector2(m_DashForce, m_Rigidbody2D.velocity.y);
+            m_Presed = false;
+
+        }
+    }
+
+    void Slide() {
+
+        if (m_mouse.y != Input.mousePosition.y)
+        {
+
+            m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * Time.deltaTime, m_DashForce);
+            m_Presed = false;
+        }
+    }
 
     void Jump()
     {
