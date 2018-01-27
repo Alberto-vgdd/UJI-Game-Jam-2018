@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour {
     public Animator m_PlayerAnimator;
     float m_NumberOfJumps;
 
-    bool m_IsGrounded = false;
     bool m_IsMoving = false;
 
     public PlayerAudioManager m_PlayerAudioManager;
@@ -25,19 +24,24 @@ public class PlayerMovement : MonoBehaviour {
 
         m_NumberOfJumps = m_jumps;
         if (coll.gameObject.tag == "Ground"){
+            
             if(m_AnimationState == AnimationState.FALLING){
-                m_AnimationState = AnimationState.LANDING;
+                m_PlayerAnimator.SetInteger("AnimationState", 4);
 
             }else{
-                m_AnimationState = AnimationState.RUNNING;
             }
+            Invoke("Run",0.3f);
+
             
-            m_IsGrounded = true;
             
         }
 
     }
 
+
+    void Run(){
+        m_AnimationState = AnimationState.RUNNING;
+    }
 
 	void Awake () 
     {
@@ -48,12 +52,13 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () 
     {
         Move();
-        UpdateAnimation();
         CheckFall();
+        UpdateAnimation();
+        
 	}
 
     void CheckFall(){
-        if(m_Rigidbody2D.velocity.y < -0.1f && (m_AnimationState == AnimationState.RUNNING || m_AnimationState == AnimationState.JUMPING)){
+        if(m_Rigidbody2D.velocity.y < 0 && (m_AnimationState == AnimationState.RUNNING || m_AnimationState == AnimationState.JUMPING)){
             m_PlayerAnimator.SetInteger("AnimationState",0);
             m_AnimationState = AnimationState.FALLING;
             m_NumberOfJumps = 0;
@@ -108,8 +113,6 @@ public class PlayerMovement : MonoBehaviour {
         {
             m_PlayerAnimator.SetInteger("AnimationState", 3);
         }else if(m_AnimationState == AnimationState.LANDING){
-            m_PlayerAnimator.SetInteger("AnimationState", 4);
-            
         }
     }
 
