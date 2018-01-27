@@ -234,11 +234,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4622813829704150, guid: 7722760cc67b75f4da43c3f013349ff2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.259
+      value: -3.49
       objectReference: {fileID: 0}
     - target: {fileID: 4622813829704150, guid: 7722760cc67b75f4da43c3f013349ff2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.0459
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 4622813829704150, guid: 7722760cc67b75f4da43c3f013349ff2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -264,11 +264,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114551746149708442, guid: 7722760cc67b75f4da43c3f013349ff2,
-        type: 2}
-      propertyPath: m_BoxCollider2D
-      value: 
-      objectReference: {fileID: 2130276531}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7722760cc67b75f4da43c3f013349ff2, type: 2}
   m_IsPrefabParent: 0
@@ -367,8 +362,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CameraTarget: {fileID: 1056769298}
   m_CameraSmoothTime: 0.1
---- !u!61 &2130276531 stripped
-BoxCollider2D:
-  m_PrefabParentObject: {fileID: 61911283708947378, guid: 7722760cc67b75f4da43c3f013349ff2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1459616826}

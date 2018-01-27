@@ -175,7 +175,7 @@ public class PlayerMovement : MonoBehaviour {
                     m_AnimationState = AnimationState.CROUCHING;
                     m_PlayerAnimator.SetInteger("AnimationState", 7);
                     m_Presed = false;
-                    Invoke("StopSliding", 0.5f);
+                    Invoke("StopSliding", 1.0f);
                 }
                 
             
