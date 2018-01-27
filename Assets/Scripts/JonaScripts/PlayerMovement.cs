@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour {
     Rigidbody2D m_Rigidbody2D;
     public BoxCollider2D m_BoxCollider2D;
 
-    public enum AnimationState{IDLE, RUNNING, JUMPING, MIDAIR, FALLING, LANDING};
+    public enum AnimationState{IDLE, RUNNING, JUMPING, MIDAIR, FALLING, LANDING, CROUCHING};
     public AnimationState m_AnimationState;
     public Animator m_PlayerAnimator;
     float m_NumberOfJumps;
@@ -21,10 +21,15 @@ public class PlayerMovement : MonoBehaviour {
     Vector3 m_mouse;
     bool m_Presed = false;
     bool m_IsMoving = false;
+    public bool m_IsSliding = false;
+    public bool m_IsDashing = false;
+    public bool m_IsJumping = false;
     public bool m_IsGrounded = false;
     public PlayerAudioManager m_PlayerAudioManager;
 
 
+
+    float m_LastJump = 0;
 
     void Run(){
         m_AnimationState = AnimationState.RUNNING;
@@ -32,6 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Awake () 
     {
+        m_BoxCollider2D = GetComponentInChildren<BoxCollider2D>();
         m_DistanceToGround = m_BoxCollider2D.bounds.extents.y;
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
@@ -56,6 +62,7 @@ public class PlayerMovement : MonoBehaviour {
             
             if(m_AnimationState == AnimationState.FALLING)
             {
+                m_IsJumping = false;
                 m_PlayerAnimator.SetInteger("AnimationState", 4);
             }
             Invoke("Run",0.3f);            
@@ -65,6 +72,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void Update () 
     {
+        GetInput();
         Move();
         CheckFall();
         CheckIfGrounded();
@@ -72,6 +80,40 @@ public class PlayerMovement : MonoBehaviour {
         UpdateAnimation();
         
 	}
+
+    void GetInput(){
+
+        if (Input.GetMouseButtonUp(0) && m_Presed)
+        {
+                Jump();
+                m_Presed = false;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            m_Presed = true;
+            m_mouse = Input.mousePosition;
+        }
+
+        if (Input.GetMouseButton(0))
+        {   
+                if(!m_IsJumping){
+                    if (Mathf.Abs(m_mouse.x - Input.mousePosition.x) > Mathf.Abs(m_mouse.y - Input.mousePosition.y))
+                    {
+                        m_IsDashing = true;
+                        Dash();
+
+                    }
+                    else if(Mathf.Abs(m_mouse.x - Input.mousePosition.x) < Mathf.Abs(m_mouse.y - Input.mousePosition.y))
+                    {
+                        m_IsSliding = true;
+                        Slide();
+                    }
+                }
+
+        }
+    }
 
     void CheckFall(){
         if(m_Rigidbody2D.velocity.y < 0 && (m_AnimationState == AnimationState.RUNNING || m_AnimationState == AnimationState.JUMPING)){
@@ -84,7 +126,6 @@ public class PlayerMovement : MonoBehaviour {
 
     void Move()
     {
-        print(m_NumberOfJumps);
         m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * Time.deltaTime, m_Rigidbody2D.velocity.y);
         m_IsMoving = true;
         /*
@@ -99,40 +140,7 @@ public class PlayerMovement : MonoBehaviour {
             m_Rigidbody2D.AddForce(new Vector2(m_DashForce * Time.deltaTime, 0));
         }*/
 
-        if (Input.GetMouseButtonUp(0) && m_Presed)
-        {
-            if (m_NumberOfJumps > 0)
-            {
-                Jump();
-                m_Presed = false;
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            m_Presed = true;
-            m_mouse = Input.mousePosition;
-        }
-
-        if (Input.GetMouseButton(0) && m_Presed && m_IsGrounded)
-        {
-
-            if (Mathf.Abs(m_mouse.x - Input.mousePosition.x) > Mathf.Abs(m_mouse.y - Input.mousePosition.y))
-            {
-
-                Dash();
-
-            }
-            else {
-
-                Slide();
-
-            }
-            
-           
-
-        }
+        
 
     }
 
@@ -140,44 +148,74 @@ public class PlayerMovement : MonoBehaviour {
 
         if (m_mouse.x != Input.mousePosition.x)
         {
-
-            m_Rigidbody2D.velocity = new Vector2(m_DashForce, m_Rigidbody2D.velocity.y);
-            m_Presed = false;
+            if(m_IsDashing){
+                Debug.Log("Dasheando");
+                transform.position = transform.position + new Vector3(10f,0,0) * Time.deltaTime;
+                m_Presed = false;
+                Invoke("StopDashing",0.5f);
+            }
+                
 
         }
     }
+
 
     void Slide() {
 
         if (m_mouse.y != Input.mousePosition.y)
         {
-
-            m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * Time.deltaTime, m_DashForce);
-            m_Presed = false;
+                if(!m_IsJumping){
+                  
+                    m_AnimationState = AnimationState.CROUCHING;
+                    m_PlayerAnimator.SetInteger("AnimationState", 7);
+                    m_Presed = false;
+                    Invoke("StopSliding", 0.5f);
+                }
+                
+            
         }
     }
+    
 
     void Jump()
     {
 
         if (m_NumberOfJumps > 0)
         {
-            m_NumberOfJumps--;
-            if(m_NumberOfJumps == 1){
-                m_PlayerAudioManager.PlayJumpSound();
-            }else{
-                m_PlayerAudioManager.PlayDoubleJumpSound();
+            if(!m_IsSliding){
+                m_AnimationState = AnimationState.JUMPING;
+                m_IsJumping = true;
+                m_NumberOfJumps--;
+                if(m_LastJump == 1){
+                    if(m_NumberOfJumps == 1){
+                        m_NumberOfJumps = 0;
+                    }
+                }
+                m_LastJump = m_NumberOfJumps;
+                if(m_NumberOfJumps == 1){
+                    m_PlayerAudioManager.PlayJumpSound();
+                }else{
+                    m_PlayerAudioManager.PlayDoubleJumpSound();
+                }
+                
+                m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpStrength);
+                m_PlayerAnimator.SetInteger("AnimationState", 1);
+               
             }
-            m_AnimationState = AnimationState.JUMPING;
-            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpStrength);
-            m_PlayerAnimator.SetInteger("AnimationState", 1);
+            
         }
 
 
     }
 
 
+    void StopSliding(){
+        m_IsSliding = false;
+    }
 
+    void StopDashing(){
+        m_IsDashing = false;
+    }
 
 
     void UpdateAnimation()
@@ -185,7 +223,16 @@ public class PlayerMovement : MonoBehaviour {
         if(m_AnimationState == AnimationState.RUNNING)
         {
             m_PlayerAnimator.SetInteger("AnimationState", 3);
-        }else if(m_AnimationState == AnimationState.LANDING){
+        }
+        else if(m_AnimationState == AnimationState.LANDING)
+        {
+
+        }
+        else if(m_AnimationState == AnimationState.CROUCHING)
+        {
+            if(m_IsSliding){
+                m_PlayerAudioManager.PlaySlideSound();
+            }
         }
     }
 
