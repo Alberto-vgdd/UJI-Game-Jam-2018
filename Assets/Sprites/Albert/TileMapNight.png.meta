@@ -1,38 +1,38 @@
 fileFormatVersion: 2
-guid: 89f08c08b75796a44a7d951a013e9544
-timeCreated: 1517017084
+guid: 894478ebf6968094ca90891072fb6d27
+timeCreated: 1517024830
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: TileMapLight_0
-    21300002: TileMapLight_1
-    21300004: TileMapLight_2
-    21300006: TileMapLight_3
-    21300008: TileMapLight_4
-    21300010: TileMapLight_5
-    21300012: TileMapLight_6
-    21300014: TileMapLight_7
-    21300016: TileMapLight_8
-    21300018: TileMapLight_9
-    21300020: TileMapLight_10
-    21300022: TileMapLight_11
-    21300024: TileMapLight_12
-    21300026: TileMapLight_13
-    21300028: TileMapLight_14
-    21300030: TileMapLight_15
-    21300032: TileMapLight_16
-    21300034: TileMapLight_17
-    21300036: TileMapLight_18
-    21300038: TileMapLight_19
-    21300040: TileMapLight_20
-    21300042: TileMapLight_21
-    21300044: TileMapLight_22
-    21300046: TileMapLight_23
-    21300048: TileMapLight_24
-    21300050: TileMapLight_25
-    21300052: TileMapLight_26
-    21300054: TileMapLight_27
-    21300056: TileMapLight_28
+    21300000: TileMapNight_0
+    21300002: TileMapNight_1
+    21300004: TileMapNight_2
+    21300006: TileMapNight_3
+    21300008: TileMapNight_4
+    21300010: TileMapNight_5
+    21300012: TileMapNight_6
+    21300014: TileMapNight_7
+    21300016: TileMapNight_8
+    21300018: TileMapNight_9
+    21300020: TileMapNight_10
+    21300022: TileMapNight_11
+    21300024: TileMapNight_12
+    21300026: TileMapNight_13
+    21300028: TileMapNight_14
+    21300030: TileMapNight_15
+    21300032: TileMapNight_16
+    21300034: TileMapNight_17
+    21300036: TileMapNight_18
+    21300038: TileMapNight_19
+    21300040: TileMapNight_20
+    21300042: TileMapNight_21
+    21300044: TileMapNight_22
+    21300046: TileMapNight_23
+    21300048: TileMapNight_24
+    21300050: TileMapNight_25
+    21300052: TileMapNight_26
+    21300054: TileMapNight_27
+    21300056: TileMapNight_28
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -129,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TileMapLight_0
+      name: TileMapNight_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,7 +143,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_1
+      name: TileMapNight_1
       rect:
         serializedVersion: 2
         x: 16
@@ -157,7 +157,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_2
+      name: TileMapNight_2
       rect:
         serializedVersion: 2
         x: 32
@@ -171,7 +171,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_3
+      name: TileMapNight_3
       rect:
         serializedVersion: 2
         x: 48
@@ -185,7 +185,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_4
+      name: TileMapNight_4
       rect:
         serializedVersion: 2
         x: 64
@@ -199,7 +199,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_5
+      name: TileMapNight_5
       rect:
         serializedVersion: 2
         x: 80
@@ -213,7 +213,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_6
+      name: TileMapNight_6
       rect:
         serializedVersion: 2
         x: 96
@@ -227,7 +227,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_7
+      name: TileMapNight_7
       rect:
         serializedVersion: 2
         x: 112
@@ -241,7 +241,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_8
+      name: TileMapNight_8
       rect:
         serializedVersion: 2
         x: 0
@@ -255,7 +255,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_9
+      name: TileMapNight_9
       rect:
         serializedVersion: 2
         x: 16
@@ -269,7 +269,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_10
+      name: TileMapNight_10
       rect:
         serializedVersion: 2
         x: 32
@@ -283,7 +283,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_11
+      name: TileMapNight_11
       rect:
         serializedVersion: 2
         x: 48
@@ -297,7 +297,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_12
+      name: TileMapNight_12
       rect:
         serializedVersion: 2
         x: 64
@@ -311,7 +311,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_13
+      name: TileMapNight_13
       rect:
         serializedVersion: 2
         x: 80
@@ -325,7 +325,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_14
+      name: TileMapNight_14
       rect:
         serializedVersion: 2
         x: 96
@@ -339,7 +339,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_15
+      name: TileMapNight_15
       rect:
         serializedVersion: 2
         x: 112
@@ -353,7 +353,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_16
+      name: TileMapNight_16
       rect:
         serializedVersion: 2
         x: 0
@@ -367,7 +367,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_17
+      name: TileMapNight_17
       rect:
         serializedVersion: 2
         x: 16
@@ -381,7 +381,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_18
+      name: TileMapNight_18
       rect:
         serializedVersion: 2
         x: 32
@@ -395,7 +395,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_19
+      name: TileMapNight_19
       rect:
         serializedVersion: 2
         x: 48
@@ -409,7 +409,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_20
+      name: TileMapNight_20
       rect:
         serializedVersion: 2
         x: 64
@@ -423,7 +423,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_21
+      name: TileMapNight_21
       rect:
         serializedVersion: 2
         x: 80
@@ -437,7 +437,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_22
+      name: TileMapNight_22
       rect:
         serializedVersion: 2
         x: 96
@@ -451,7 +451,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_23
+      name: TileMapNight_23
       rect:
         serializedVersion: 2
         x: 112
@@ -465,7 +465,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_24
+      name: TileMapNight_24
       rect:
         serializedVersion: 2
         x: 0
@@ -479,7 +479,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_25
+      name: TileMapNight_25
       rect:
         serializedVersion: 2
         x: 16
@@ -493,7 +493,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_26
+      name: TileMapNight_26
       rect:
         serializedVersion: 2
         x: 32
@@ -507,7 +507,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_27
+      name: TileMapNight_27
       rect:
         serializedVersion: 2
         x: 0
@@ -521,7 +521,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TileMapLight_28
+      name: TileMapNight_28
       rect:
         serializedVersion: 2
         x: 16
