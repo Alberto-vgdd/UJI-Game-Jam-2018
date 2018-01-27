@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4093826642678988}
   - component: {fileID: 95701613287720774}
   - component: {fileID: 212421126158082904}
-  - component: {fileID: 61911283708947378}
   - component: {fileID: 114825349878854692}
   - component: {fileID: 82666123451864352}
   - component: {fileID: 82577023054237338}
@@ -29,6 +28,7 @@ GameObject:
   - component: {fileID: 82334156552513430}
   - component: {fileID: 82581696069707686}
   - component: {fileID: 82908087798646726}
+  - component: {fileID: 70152753461050438}
   m_Layer: 0
   m_Name: Player Sprite
   m_TagString: Player
@@ -73,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1641962549176642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.259, y: 0.0459, z: 0}
+  m_LocalPosition: {x: -3.49, y: 0.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4093826642678988}
@@ -100,8 +100,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61911283708947378
-BoxCollider2D:
+--- !u!70 &70152753461050438
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -112,19 +112,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.035234004, y: 0.466851}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1, y: 1.0625}
-    newSize: {x: 0.16, y: 0.17}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.42451078, y: 0.9706383}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0.476}
+  m_Size: {x: 0.4, y: 0.95}
+  m_Direction: 0
 --- !u!82 &82118659283688002
 AudioSource:
   m_ObjectHideFlags: 1
@@ -633,11 +623,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f69509c617aab4ab43455a008b7c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementSpeed: 190
-  m_JumpStrength: 10
+  m_MovementSpeed: 5
+  m_JumpStrength: 9
   m_jumps: 2
-  m_DashForce: 0
-  m_BoxCollider2D: {fileID: 61911283708947378}
+  m_CapsuleCollider2D: {fileID: 0}
   m_AnimationState: 1
   m_PlayerAnimator: {fileID: 95701613287720774}
   m_IsSliding: 0
