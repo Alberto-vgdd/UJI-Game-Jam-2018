@@ -28,7 +28,8 @@ public class PlayerAudioManager : MonoBehaviour {
 	}
 
 	public void PlaySlideSound(){
-		m_PlayerSlideAudioSource.Play();
+		if (!m_PlayerSlideAudioSource.isPlaying)
+			m_PlayerSlideAudioSource.Play();
 	}
 
 

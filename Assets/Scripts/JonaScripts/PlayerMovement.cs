@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour {
     public float m_jumps;
 
     Rigidbody2D m_Rigidbody2D;
-    public CapsuleCollider2D m_CapsuleCollider2D;
+    CapsuleCollider2D m_CapsuleCollider2D;
 
     public enum AnimationState{IDLE, RUNNING, JUMPING, MIDAIR, FALLING, LANDING, CROUCHING};
     public AnimationState m_AnimationState;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Awake () 
     {
-        m_CapsuleCollider2D = GetComponentInChildren<CapsuleCollider2D>();
+        m_CapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         m_DistanceToGround = m_CapsuleCollider2D.bounds.extents.y;
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}

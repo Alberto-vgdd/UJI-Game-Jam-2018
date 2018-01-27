@@ -7,7 +7,7 @@ public class DashTrailScript : MonoBehaviour
 	
 	private SpriteRenderer[] trailSpriteRenderers;
 	private GameObject[] trailGameObjects;
-	private float trailTime = 0.2f;
+	private float trailTime = 0.1f;
 	private float trailTimer = 0f;
 
 	private GameObject playerGameObject;
@@ -32,9 +32,12 @@ public class DashTrailScript : MonoBehaviour
 
 			GameObject trailObject = Instantiate(playerGameObject,playerGameObject.transform.position+Vector3.forward*0.1f,playerGameObject.transform.rotation);
 			trailObject.GetComponent<DashTrailScript>().enabled = false;
-			Destroy(trailObject,0.5f);
+			Destroy(trailObject,0.2f);
 
 			SpriteRenderer trailSprite = trailObject.GetComponent<SpriteRenderer>();
+			Animator animator = trailObject.GetComponent<Animator>();
+			trailSprite.sprite = playerGameObject.GetComponent<SpriteRenderer>().sprite;
+
 
 			Color originalColor =  new Color(trailSprite.color.r,trailSprite.color.g,trailSprite.color.b,0.5f);
 			trailSprite.color = Color.Lerp(originalColor,Color.cyan,0.5f);
