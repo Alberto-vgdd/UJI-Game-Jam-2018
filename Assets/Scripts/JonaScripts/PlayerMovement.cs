@@ -114,6 +114,7 @@ public class PlayerMovement : MonoBehaviour {
                 if(!m_IsJumping){
                     if (Mathf.Abs(m_mouse.x - Input.mousePosition.x) > Mathf.Abs(m_mouse.y - Input.mousePosition.y))
                     {
+                        Turn();
                         Dash();
                     }
                     else if(Mathf.Abs(m_mouse.x - Input.mousePosition.x) < Mathf.Abs(m_mouse.y - Input.mousePosition.y))
@@ -160,6 +161,24 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
+
+    void Turn(){
+
+        
+        if (m_mouse.x != Input.mousePosition.x)
+        {
+            if (m_direction * (m_mouse.x - Input.mousePosition.x) > 0)
+            {
+                
+                Debug.Log("Turn");
+               m_PlayerAnimator.SetInteger("AnimationState",12);
+               m_direction = m_direction * (-1);
+               transform.localScale = new Vector3(1 * m_direction, 1,1);
+            }
+        }
+
+    }
+
     void Dash() {
 
         if (m_mouse.x != Input.mousePosition.x)
@@ -171,11 +190,7 @@ public class PlayerMovement : MonoBehaviour {
                 transform.position = transform.position + new Vector3(10f, 0, 0) * Time.deltaTime * m_direction;
                 m_Presed = false;
             }
-            else {
-
-               m_direction = m_direction * (-1);
-                transform.localScale = new Vector3(1 * m_direction, 1,1);
-            }
+ 
         }
     }
 
