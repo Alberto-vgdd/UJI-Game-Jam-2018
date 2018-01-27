@@ -19,24 +19,19 @@ public class PlayerMovement : MonoBehaviour {
     bool m_IsGrounded = false;
     bool m_IsMoving = false;
 
+    public PlayerAudioManager m_PlayerAudioManager;
+
     void OnCollisionEnter2D(Collision2D coll){
 
         m_NumberOfJumps = m_jumps;
         if (coll.gameObject.tag == "Ground"){
+            if(m_AnimationState == AnimationState.FALLING){
+                m_PlayerAnimator.SetInteger("AnimationState",4);
+            }
             m_AnimationState = AnimationState.RUNNING;
             m_IsGrounded = true;
         }
 
-        
-    }
-
-    void OnCollisionExit2D(Collision2D coll)
-    {
-        if(m_Rigidbody2D.velocity.y < 0 && m_IsGrounded){
-            m_AnimationState = AnimationState.FALLING;
-            m_NumberOfJumps = 0;
-        }
-        
     }
 
 
@@ -49,14 +44,17 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () 
     {
         Move();
-        CheckAnimationStatus();
         UpdateAnimation();
+        CheckFall();
 	}
 
-    void CheckAnimationStatus()
-    {
-        
+    void CheckFall(){
+        if(m_Rigidbody2D.velocity.y < 0 && (m_AnimationState == AnimationState.RUNNING || m_AnimationState == AnimationState.JUMPING)){
+            m_AnimationState = AnimationState.FALLING;
+            m_NumberOfJumps = 0;
+        }
     }
+
 
     void Move()
     {
@@ -82,8 +80,14 @@ public class PlayerMovement : MonoBehaviour {
         if (m_NumberOfJumps > 0)
         {
             m_NumberOfJumps--;
+            if(m_NumberOfJumps == 1){
+                m_PlayerAudioManager.PlayJumpSound();
+            }else{
+                m_PlayerAudioManager.PlayDoubleJumpSound();
+            }
             m_AnimationState = AnimationState.JUMPING;
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpStrength);
+            
         }
 
 
@@ -98,10 +102,17 @@ public class PlayerMovement : MonoBehaviour {
         if(m_AnimationState == AnimationState.RUNNING)
         {
             m_PlayerAnimator.SetInteger("AnimationState", 3);
-        }else if(m_AnimationState == AnimationState.JUMPING){
+        }
+        else if(m_AnimationState == AnimationState.JUMPING)
+        {
             m_PlayerAnimator.SetInteger("AnimationState", 1);
-        }else if(m_AnimationState == AnimationState.FALLING){
+        }
+        else if(m_AnimationState == AnimationState.FALLING)
+        {
             m_PlayerAnimator.SetInteger("AnimationState", 0);
         }
+
     }
+
+
 }
