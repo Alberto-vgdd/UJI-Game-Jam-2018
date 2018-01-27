@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Salva/Salva-TestScene.unity
     guid: fa775b4b9a6d0444bbe22d464a273dbf
+  - enabled: 1
+    path: Assets/Scenes/Isra/Isra-TestScene.unity
+    guid: 7a9d3c592d46cd044bf8e0a9627727ff
