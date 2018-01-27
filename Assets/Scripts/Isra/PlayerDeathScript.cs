@@ -4,45 +4,47 @@ using UnityEngine;
 
 public class PlayerDeathScript : MonoBehaviour {
 
-	public Rigidbody2D m_Rigidbody2D;
-	GameManager m_GameManager;
-	BoxCollider2D m_BoxCollider2D;
-	public bool m_IsDead = false;
-
-	public float m_ActualPositionX = 0;
-	public float m_LastPositionX = 0;
-	float frames = 0;
+    public Transform player;
+    bool m_IsDead = false;
+    Vector3 lastPos;
+    float lastScale;
+    float count = 1;
 	// Update is called once per frame
 	void Awake(){
-		m_BoxCollider2D = GetComponent<BoxCollider2D>();
+
+        lastPos = player.position;
+        lastScale = player.localScale.y;
+
 	}
 	
 	void Update () {
-		frames++;
-		CheckDeath();
-		GameOver();
+
+        count = count - Time.deltaTime;
+        if (count <= 0 && !m_IsDead) {
+            CheckDeath();
+            count = 0.4f;
+
+        }
 	}
 
 	void CheckDeath(){
-		if(frames == 0){
-			
-		}
-		m_ActualPositionX = transform.position.x;
 
-		if(m_LastPositionX != 0){
-			if(m_ActualPositionX == m_LastPositionX){
-				m_IsDead = true;
-			}
-		}
-		if(frames % 60 == 0){
-			m_LastPositionX = m_ActualPositionX;
+        if (player.position.x == lastPos.x && lastScale == player.localScale.y) {
 
-		}
+            m_IsDead = true;
+            GameOver();
+
+
+        }
+        lastPos = player.position;
+        lastScale = player.localScale.y;
+
 	}
 
 
 	void GameOver(){
 		if(m_IsDead){
+            Time.timeScale = 0.02f;
 			GameManager.instance.RestartDream();
 		}
 	}
