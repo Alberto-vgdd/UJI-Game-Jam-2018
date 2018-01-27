@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     float m_NumberOfJumps;
     float m_DistanceToGround;
     float m_direction = 1;
+    float m_CounterTurn = 0;
 
     Vector3 m_mouse;
     bool m_Presed = false;
@@ -71,13 +72,13 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void Update () 
     {
+        m_CounterTurn = m_CounterTurn - Time.deltaTime;
         GetInput();
         Move();
         CheckFall();
         CheckIfGrounded();
         OnGrounded();
-        UpdateAnimation();
-        
+        UpdateAnimation(); 
 	}
 
     void GetInput(){
@@ -162,6 +163,8 @@ public class PlayerMovement : MonoBehaviour {
                m_PlayerAnimator.SetInteger("AnimationState",12);
                m_direction = m_direction * (-1);
                transform.localScale = new Vector3(1 * m_direction, 1,1);
+               m_CounterTurn = 0.5f;
+            m_Presed = false;
 
         }
 
@@ -169,7 +172,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Dash() {
 
-        if (m_mouse.x != Input.mousePosition.x)
+        if (m_mouse.x != Input.mousePosition.x  && m_CounterTurn <= 0)
         {
 
                 m_IsDashing = true;
