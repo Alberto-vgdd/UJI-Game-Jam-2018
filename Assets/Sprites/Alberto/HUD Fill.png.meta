@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 352d82f3e53ce6748b0c924f9f3fba57
-timeCreated: 1517045408
+timeCreated: 1517077903
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,8 @@ TextureImporter:
     21300002: HUD Fill_1
     21300004: HUD Fill_2
     21300006: HUD Fill_3
+    21300008: HUD Fill_4
+    21300010: HUD Fill_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -141,6 +143,34 @@ TextureImporter:
         serializedVersion: 2
         x: 96
         y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD Fill_4
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD Fill_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
         width: 16
         height: 16
       alignment: 0
