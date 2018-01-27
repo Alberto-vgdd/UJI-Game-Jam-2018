@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641252, b: 0.574817, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1692,6 +1692,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &563325506 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114729608492942998, guid: ebd0706305ef7fb4288b4dfbc32a4506,
+    type: 2}
+  m_PrefabInternal: {fileID: 1429912706}
+  m_Script: {fileID: 11500000, guid: 5acedd7ed7647b741b2c0fc02fc01314, type: 3}
 --- !u!1 &586024708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1928,6 +1934,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 666751858}
+--- !u!114 &687113845 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114729608492942998, guid: ebd0706305ef7fb4288b4dfbc32a4506,
+    type: 2}
+  m_PrefabInternal: {fileID: 1440239322}
+  m_Script: {fileID: 11500000, guid: 5acedd7ed7647b741b2c0fc02fc01314, type: 3}
 --- !u!1 &723690071
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,13 +2500,13 @@ MonoBehaviour:
   PrecioGirar: 9999
   PrecioAgacharse: 9999
   PrecioSecreto: 9999
-  BotonSalto: {fileID: 856416847}
-  BotonDobleSalto: {fileID: 2028075077}
-  BotonDash: {fileID: 345635051}
-  BotonGirar: {fileID: 1307021662}
-  BotonAgacharse: {fileID: 34721452}
-  BotonSecreto: {fileID: 1538943941}
-  BotonSalir: {fileID: 866179208}
+  BotonSalto: {fileID: 1835385076}
+  BotonDobleSalto: {fileID: 687113845}
+  BotonDash: {fileID: 2117365168}
+  BotonGirar: {fileID: 1851035920}
+  BotonAgacharse: {fileID: 2046242489}
+  BotonSecreto: {fileID: 1883227772}
+  BotonSalir: {fileID: 563325506}
   experienciaActual: {fileID: 881227829}
   distanciaMaxima: {fileID: 317479918}
 --- !u!95 &899851623
@@ -3641,13 +3653,13 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d261a3cafa93b494c9c5fbd6d563e03a,
+      objectReference: {fileID: 21300014, guid: d261a3cafa93b494c9c5fbd6d563e03a,
         type: 3}
     - target: {fileID: 114184538602665676, guid: ebd0706305ef7fb4288b4dfbc32a4506,
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d261a3cafa93b494c9c5fbd6d563e03a,
+      objectReference: {fileID: 21300014, guid: d261a3cafa93b494c9c5fbd6d563e03a,
         type: 3}
     - target: {fileID: 114729608492942998, guid: ebd0706305ef7fb4288b4dfbc32a4506,
         type: 2}
@@ -5028,6 +5040,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1800902713}
+--- !u!114 &1835385076 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114729608492942998, guid: ebd0706305ef7fb4288b4dfbc32a4506,
+    type: 2}
+  m_PrefabInternal: {fileID: 84133226}
+  m_Script: {fileID: 11500000, guid: 5acedd7ed7647b741b2c0fc02fc01314, type: 3}
+--- !u!114 &1851035920 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114729608492942998, guid: ebd0706305ef7fb4288b4dfbc32a4506,
+    type: 2}
+  m_PrefabInternal: {fileID: 1525913447}
+  m_Script: {fileID: 11500000, guid: 5acedd7ed7647b741b2c0fc02fc01314, type: 3}
+--- !u!114 &1883227772 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114729608492942998, guid: ebd0706305ef7fb4288b4dfbc32a4506,
+    type: 2}
+  m_PrefabInternal: {fileID: 1892711245}
+  m_Script: {fileID: 11500000, guid: 5acedd7ed7647b741b2c0fc02fc01314, type: 3}
 --- !u!1 &1891952163
 GameObject:
   m_ObjectHideFlags: 0
@@ -5639,6 +5669,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2028075075}
+--- !u!114 &2046242489 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114729608492942998, guid: ebd0706305ef7fb4288b4dfbc32a4506,
+    type: 2}
+  m_PrefabInternal: {fileID: 144376321}
+  m_Script: {fileID: 11500000, guid: 5acedd7ed7647b741b2c0fc02fc01314, type: 3}
 --- !u!1 &2085623219
 GameObject:
   m_ObjectHideFlags: 0
@@ -5720,6 +5756,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2117365168 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114729608492942998, guid: ebd0706305ef7fb4288b4dfbc32a4506,
+    type: 2}
+  m_PrefabInternal: {fileID: 648106832}
+  m_Script: {fileID: 11500000, guid: 5acedd7ed7647b741b2c0fc02fc01314, type: 3}
 --- !u!1 &2125351983
 GameObject:
   m_ObjectHideFlags: 0
