@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour {
     public float m_MovementSpeed;
     public float m_JumpStrength;
     public float m_jumps;
-    public float m_DashForce;
 
     Rigidbody2D m_Rigidbody2D;
     public BoxCollider2D m_BoxCollider2D;
@@ -17,6 +16,7 @@ public class PlayerMovement : MonoBehaviour {
     public Animator m_PlayerAnimator;
     float m_NumberOfJumps;
     float m_DistanceToGround;
+    float m_direction = 1;
 
     Vector3 m_mouse;
     bool m_Presed = false;
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Move()
     {
-        m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * Time.deltaTime, m_Rigidbody2D.velocity.y);
+        m_Rigidbody2D.velocity = new Vector2(m_MovementSpeed * m_direction * Time.deltaTime, m_Rigidbody2D.velocity.y);
         m_IsMoving = true;
         /*
         if (((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetKeyDown("space")) && m_NumberOfJumps > 0)
@@ -150,11 +150,18 @@ public class PlayerMovement : MonoBehaviour {
 
         if (m_mouse.x != Input.mousePosition.x)
         {
+            if (m_direction * (m_mouse.x - Input.mousePosition.x) < 0)
+            {
                 m_IsDashing = true;
                 Debug.Log("Dasheando");
-                transform.position = transform.position + new Vector3(10f,0,0) * Time.deltaTime;
+                transform.position = transform.position + new Vector3(10f, 0, 0) * Time.deltaTime * m_direction;
                 m_Presed = false;
-            
+            }
+            else {
+
+               m_direction = m_direction * (-1);
+                transform.localScale = new Vector3(1 * m_direction, 1,1);
+            }
         }
     }
 
