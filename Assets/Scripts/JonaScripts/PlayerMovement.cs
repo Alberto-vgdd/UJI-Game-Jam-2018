@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour {
     public Animator m_PlayerAnimator;
     float m_NumberOfJumps;
 
+    bool m_IsGrounded = false;
     bool m_IsMoving = false;
 
     void OnCollisionEnter2D(Collision2D coll){
@@ -23,16 +24,19 @@ public class PlayerMovement : MonoBehaviour {
         float m_NumberOfJumps = m_jumps;
         if (coll.gameObject.tag == "Ground"){
             m_AnimationState = AnimationState.RUNNING;
-    
+            m_IsGrounded = true;
         }
-            
+
         
     }
 
     void OnCollisionExit2D(Collision2D coll)
     {
-        
+        if(m_Rigidbody2D.velocity.y < 0 && m_IsGrounded){
+            m_AnimationState = AnimationState.FALLING;
+        }
     }
+
 
 	void Awake () 
     {
@@ -49,7 +53,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void CheckAnimationStatus()
     {
-
+        
     }
 
     void Move() 
@@ -74,6 +78,7 @@ public class PlayerMovement : MonoBehaviour {
         if (collision.gameObject.tag == "Ground") {
 
             m_NumberOfJumps = m_jumps;
+            m_IsGrounded = true;
         }
 
     }
