@@ -13,7 +13,7 @@ public class HUDManagerScript : MonoBehaviour
 
 	private GameObject pauseMenu;
 	private GameObject inGameMenu;
-	private GameObject shopMenu;
+	public GameObject shopMenu;
 
 	private Tienda tienda;
 
@@ -23,8 +23,8 @@ public class HUDManagerScript : MonoBehaviour
 
 		pauseMenu = transform.Find("Pause Menu").gameObject;
 		inGameMenu = transform.Find("InGame Menu").gameObject;
-		shopMenu = transform.Find("Tienda").gameObject;
-		tienda = shopMenu.GetComponent<Tienda>();
+		//shopMenu = transform.Find("Tienda").gameObject;
+		tienda = shopMenu.GetComponentInChildren<Tienda>();
 	}
 
 	public void UseButton(int buttonId)
