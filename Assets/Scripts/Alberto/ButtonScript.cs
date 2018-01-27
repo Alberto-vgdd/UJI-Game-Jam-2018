@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
 {
 
+	public string accion;
+
 	private GameObject[] buttonGameObjects;
 
 	// Images to asign materials when the color scheme changes.
@@ -14,6 +16,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 	public Image[] buttonOutlineImages;
 	public Image[] buttonFillImages;
 	public Image[] buttonPressedImages;
+
+	public Tienda tienda;
 
 
 
@@ -33,6 +37,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 	public void OnPointerDown(PointerEventData eventData)
     {
+		ComprarMejora (accion);
 		// Disable released button gameobject
 		buttonGameObjects[1].SetActive(false);
     }
@@ -60,6 +65,66 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 		foreach (Image image in buttonPressedImages)
 		{
 			image.material = pressedMaterial;
+		}
+	}
+
+	public void ComprarMejora(string nombre){
+		
+		switch(nombre){
+		case "Salto":
+			if (GlobalData.experiencia >= tienda.PrecioSalto && GlobalData.saltoComprado == false) {
+				print ("HOLA");
+				//BotonSalto.interactable = false;
+				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioSalto;
+				GlobalData.saltoComprado = true;
+				tienda.Actualizar ();
+			}
+			break;
+		case "DobleSalto":
+			if (GlobalData.experiencia >= tienda.PrecioDobleSalto && GlobalData.dobleSaltoComprado == false) {
+				//BotonDobleSalto.interactable = false;
+				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioDobleSalto;
+				GlobalData.dobleSaltoComprado = true;
+				tienda.Actualizar ();
+			}
+			break;
+		case "Dash":
+			if (GlobalData.experiencia >= tienda.PrecioDash && GlobalData.dashComprado == false) {
+				//BotonDash.interactable = false;
+				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioDash;
+				GlobalData.dashComprado = true;
+				tienda.Actualizar ();
+			}
+			break;
+		case "Girar":
+			if (GlobalData.experiencia >= tienda.PrecioGirar && GlobalData.girarComprado == false) {
+				//BotonGirar.interactable = false;
+				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioGirar;
+				GlobalData.girarComprado = true;
+				tienda.Actualizar ();
+			}
+			break;
+		case "Agacharse":
+			if (GlobalData.experiencia >= tienda.PrecioAgacharse && GlobalData.agacharseComprado == false) {
+				//BotonAgacharse.interactable = false;
+				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioAgacharse;
+				GlobalData.agacharseComprado = true;
+				tienda.Actualizar ();
+			}
+			break;
+		case "Secreto":
+			if (GlobalData.experiencia >= tienda.PrecioSecreto && GlobalData.secretoComprado == false) {
+				//BotonSecreto.interactable = false;
+				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioSecreto;
+				GlobalData.secretoComprado = true;
+				tienda.Actualizar ();
+			}
+			break;
+		case "Salir":
+			tienda.SalirTienda ();
+			break;
+		default:
+			break;
 		}
 	}
 
