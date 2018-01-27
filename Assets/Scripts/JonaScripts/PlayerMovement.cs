@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
         if(m_Rigidbody2D.velocity.y < 0 && (m_AnimationState == AnimationState.RUNNING || m_AnimationState == AnimationState.JUMPING)){
             m_PlayerAnimator.SetInteger("AnimationState",0);
             m_AnimationState = AnimationState.FALLING;
-            m_NumberOfJumps = 0;
+            if(m_NumberOfJumps>1) m_NumberOfJumps--;
         }
     }
 
