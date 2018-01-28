@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour {
 
-    public float multiplier = 0.5f;
-    PlayerMovement player;
+    //public float multiplier = 0.5f;
+    //PlayerMovementScript player;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Añadir activar menu cuando esté 
         Time.timeScale = 0;
-        player = collision.gameObject.GetComponent<PlayerMovement>();
+       // player = collision.gameObject.GetComponent<PlayerMovementScript>();
+		AsegurarDinero();
+		GlobalData.currentInstance.currentStreakExpPlayer += 0.5f;
     }
 
-    public void Rescute() {
+	public void AsegurarDinero() {
 
-        GlobalData.experiencia = GlobalData.experiencia + (int)player.m_Coins;
+		GlobalData.experienciaTotal = GlobalData.experienciaTotal + (int) (GlobalData.currentInstance.expPlayer * 
+			GlobalData.currentInstance.currentStreakExpPlayer);
         //Falta llamar al Game Over Cuando esté
     }
 
