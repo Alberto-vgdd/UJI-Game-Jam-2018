@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4864042623425396}
   - component: {fileID: 61603908898569952}
   - component: {fileID: 114294134358612102}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 5 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 61650925547809048}
   - component: {fileID: 114691841164464360}
   - component: {fileID: 212930313607441588}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 4 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4064210604276644}
   - component: {fileID: 61883777153625320}
   - component: {fileID: 114135529643287224}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 4 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,9 +140,9 @@ GameObject:
   - component: {fileID: 3664157345135352146}
   - component: {fileID: 50310146561396648}
   - component: {fileID: 2113883504181842654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap Ground Lv 6
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4612542955787398}
   - component: {fileID: 61717032852673322}
   - component: {fileID: 114154508457400428}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 4 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 61510360200586510}
   - component: {fileID: 114763199173053744}
   - component: {fileID: 212614803097293832}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 6 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 61611074779381626}
   - component: {fileID: 114615480596338118}
   - component: {fileID: 212488892779543676}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 61413328747100304}
   - component: {fileID: 114163504732788116}
   - component: {fileID: 212079474069175376}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 6 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 61171508956307990}
   - component: {fileID: 114216247765369664}
   - component: {fileID: 212670096774501538}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 4 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 61142977821413434}
   - component: {fileID: 114488745007735066}
   - component: {fileID: 212847695298832204}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 5 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 61865352902080238}
   - component: {fileID: 114312934657406092}
   - component: {fileID: 212509499039586628}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 3 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 4649640117012270}
   - component: {fileID: 61016214079730008}
   - component: {fileID: 114602236865186312}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 3 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 61238835384089842}
   - component: {fileID: 114587633897102036}
   - component: {fileID: 212880565096032450}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 5 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 61554007530233444}
   - component: {fileID: 114094076244918272}
   - component: {fileID: 212523548077335370}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 6 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 61677568698193420}
   - component: {fileID: 114644699841706664}
   - component: {fileID: 212335084103845218}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 4 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 61824580896773196}
   - component: {fileID: 114370236680742538}
   - component: {fileID: 212195001717107400}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 6 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 61970047767578886}
   - component: {fileID: 114405243705324016}
   - component: {fileID: 212714170557491144}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 6 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 61766668891932350}
   - component: {fileID: 114217384681293212}
   - component: {fileID: 212914891872254634}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 4 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 61975032263844582}
   - component: {fileID: 114317375873744272}
   - component: {fileID: 212540762443640462}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 4868833467596410}
   - component: {fileID: 61649117649501162}
   - component: {fileID: 114697623271414604}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 6 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 61285032324100594}
   - component: {fileID: 114447092165061986}
   - component: {fileID: 212234130537385206}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 5 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 4459665709999898}
   - component: {fileID: 61054457422883356}
   - component: {fileID: 114670998798200258}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 5 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 61612092873064990}
   - component: {fileID: 114038120569949904}
   - component: {fileID: 212326819243322668}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Breakables 6 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24136,8 +24136,8 @@ Tilemap:
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
+      m_TileFlags: 0
+      m_ColliderType: 0
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 6
@@ -24150,7 +24150,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 6
+  - m_RefCount: 7
     m_Data:
       e00: 1
       e01: 0
@@ -24169,7 +24169,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 6
+  - m_RefCount: 7
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
