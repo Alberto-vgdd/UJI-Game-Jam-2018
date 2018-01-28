@@ -68,10 +68,10 @@ public class PlayerMovementScript : MonoBehaviour {
 		CheckIfGrounded();
 		CheckIfFalling();
 
-		/*
-		if(m_StartSliderTimer)
-			CheckForSliderTimer();
-		*/
+		
+		if(m_StartSliderTimer && m_IsSliding)
+			CheckForSlideTimer();
+		
 
 		if(m_StartDashTimer && m_IsDashing)
 			CheckForDashTimer();
@@ -109,21 +109,20 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 
 
-	/*
+	
 	void CheckForSlideTimer(){
 		m_SlideTimer += Time.deltaTime;
-		if(m_SlideTimer < 2.5f ){
+		if(m_SlideTimer < 0.5f ){
 
 			m_PlayerAnimator.SetInteger("AnimationState",2);
 
-			
 		}else{
 
 			m_PlayerAnimator.SetInteger("AnimationState",5);
 			SwitchState(AnimationStates.RUNNING);
 		}
 	}
-	*/
+	
 
 	
 
@@ -245,10 +244,10 @@ public class PlayerMovementScript : MonoBehaviour {
 
 				m_IsSliding = true;
 				m_PlayerAnimator.SetInteger("AnimationState",2);		
-				/*		
+				
 				m_SlideTimer = 0;
 				m_StartSliderTimer = true;
-				*/
+			
 				break;
 		}
 	}
@@ -279,7 +278,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
         if (Input.GetMouseButton(0))
 		{
-			if(m_IsGrounded)
+			if(m_AnimationState != AnimationStates.JUMP)
 			{
 				if (Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) > 
 					Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y))
