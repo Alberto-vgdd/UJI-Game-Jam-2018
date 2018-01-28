@@ -51,18 +51,16 @@ public class Tienda : MonoBehaviour {
 		fondoEstrellas.SetActive (true);
 		animacionEstrellas = fondoEstrellas.GetComponent<Animation> ();
 		animacionEstrellas.Play ("TransicionInicialEstrellas",PlayMode.StopAll);
-
-		Debug.Log("123123");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		distanciaMaxima.text = GlobalData.metros + "m";
+		experienciaActual.text = GlobalData.experienciaTotal + "xp";
 	}
 
 	public void Actualizar(){
 		experienciaActual.text = GlobalData.experienciaTotal + "xp";
-		distanciaMaxima.text = GlobalData.metros + "m";
 	}
 		
 	public int SalirTienda(){

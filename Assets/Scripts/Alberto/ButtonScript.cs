@@ -44,6 +44,18 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 		buttonEnabled = true;
 
+		if (accion == "DobleSalto" && GlobalData.saltoComprado == false) {
+			buttonEnabled = false;
+			buttonGameObjects[1].SetActive(false);
+		}
+
+	}
+
+	void Update(){
+		if (accion == "DobleSalto" && GlobalData.saltoComprado == true) {
+			buttonEnabled = true;
+			buttonGameObjects[1].SetActive(true);
+		}
 	}
 
 
