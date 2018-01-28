@@ -1,11 +1,16 @@
 fileFormatVersion: 2
 guid: 48718cb85f144f346b65785983a4e644
-timeCreated: 1517102295
+timeCreated: 1517134328
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - CheckPointCanvasReference: {fileID: 1148138792173176, guid: 6f38688cdbcef0a4481f3e2f99fbd1df,
+      type: 2}
+  - playerReference: {fileID: 1641962549176642, guid: 4cfe06fc6b832ee4ea6f15f6a54adaef,
+      type: 2}
+  - script: {fileID: 114448265916348030, guid: 4cfe06fc6b832ee4ea6f15f6a54adaef, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
