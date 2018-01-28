@@ -21,6 +21,8 @@ public class HUDManagerScript : MonoBehaviour
 
 	private Tienda tienda;
 
+    public PlayerMovementScript script;
+
 
 	private int currentMenu;
 
@@ -74,7 +76,10 @@ public class HUDManagerScript : MonoBehaviour
 		pauseMenu.SetActive(true);
 
 		currentMenu = 1;
-	}
+       
+        Time.timeScale = 0;
+        script.enabled = false;
+    }
 
 	void ResumeGame()
 	{
@@ -85,7 +90,11 @@ public class HUDManagerScript : MonoBehaviour
 		inGameMenu.SetActive(true);
 
 		currentMenu = 0;
-	}
+
+        
+        Time.timeScale = 1;
+        script.enabled = true;
+    }
 
 	void OpenShop()
 	{
