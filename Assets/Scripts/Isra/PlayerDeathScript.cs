@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerDeathScript : MonoBehaviour {
 
-    public Transform player;
+    public GameObject player;
     bool m_IsDead = false;
     Vector3 lastPos;
     float lastScale;
@@ -12,8 +12,8 @@ public class PlayerDeathScript : MonoBehaviour {
 	// Update is called once per frame
 	void Awake(){
 
-        lastPos = player.position;
-        lastScale = player.localScale.y;
+        lastPos = player.transform.position;
+        lastScale = player.transform.localScale.y;
 
 	}
 	
@@ -32,15 +32,15 @@ public class PlayerDeathScript : MonoBehaviour {
 
 	void CheckDeath(){
 
-        if (player.position.x == lastPos.x && lastScale == player.localScale.y) {
+        if (player.transform.position.x == lastPos.x && lastScale == player.transform.localScale.y && !player.GetComponent<PlayerMovementScript>().InCheckPoint) {
 
             m_IsDead = true;
             GameOver();
 
 
         }
-        lastPos = player.position;
-        lastScale = player.localScale.y;
+        lastPos = player.transform.position;
+        lastScale = player.transform.localScale.y;
 
 	}
 
