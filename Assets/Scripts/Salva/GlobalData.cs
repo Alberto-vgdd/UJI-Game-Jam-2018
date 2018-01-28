@@ -55,6 +55,10 @@ public class GlobalData : MonoBehaviour {
 		RestartMultiplierExpPlayer ();
 	}	
 
+	public void ReturnToBeginning()
+	{
+		playerGameObjectReference.transform.position = new Vector3 (-3.49f, 0.47f, 0f);
+	}
 
 	public void KillingInTheNameOf()
 	{
@@ -63,12 +67,14 @@ public class GlobalData : MonoBehaviour {
 		 * Y carteles de "has perdido lol git gud"
 		 * 
 		 */
-
 		ResetStats ();
-		SceneManager.LoadScene (0); //Carga la escena situada en el 0 del orden de build.
+		ResetScene ();
 	}
 
-
+	public void ResetScene()
+	{
+		SceneManager.LoadScene (0); //Carga la escena situada en el 0 del orden de build.
+	}
 
 	// Use this for initialization
 	void Start () {

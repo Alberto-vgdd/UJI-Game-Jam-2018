@@ -11,27 +11,27 @@ public class CheckPoint : MonoBehaviour {
 
 	public GameObject playerReference;
 
-	public PlayerMovementScript script;
-
 	void Awake()
 	{
 		CheckPointCanvasReference.SetActive(false);
 	}
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+	private void OnTriggerEnter2D(Collider2D other)
     {
         //Añadir activar menu cuando esté 
         //Time.timeScale = 0;
        // player = collision.gameObject.GetComponent<PlayerMovementScript>();
 		CheckPointCanvasReference.SetActive(true);
 		print ("CHECKPOINT ACHIEVED");
-		//AsegurarDinero();
+	
+		//AUI HAY QUE HACER QUE EL PLAYER NO SE MUEVA
+
 		GlobalData.currentInstance.currentStreakExpPlayer += 0.5f;
-		playerReference = collision.gameObject;
-		script = playerReference.GetComponent<PlayerMovementScript> ();
-		script.InCheckPoint = true;
+		playerReference = other.gameObject;
 		playerReference.GetComponentInChildren<Animator> ().SetInteger ("AnimationState", 27);
+		other.gameObject.GetComponent<PlayerMovementScript> ().InCheckPoint = true;
     }
 
 	public void AsegurarDinero() {
@@ -45,10 +45,13 @@ public class CheckPoint : MonoBehaviour {
 
     public void Continue() {
          
-		CheckPointCanvasReference.SetActive(false);
+
         //Faltará desactivar el menu cuando esté
-		script.InCheckPoint = true;
+		//script.InCheckPoint = true;
 		playerReference.GetComponentInChildren<Animator> ().SetInteger ("AnimationState", 28);
+		CheckPointCanvasReference.SetActive(false);
+		playerReference.GetComponent<PlayerMovementScript> ().InCheckPoint = false;
+		//AUI HAY QUE HACER QUE EL PLAYER SE MUEVA
         
     }
 }
