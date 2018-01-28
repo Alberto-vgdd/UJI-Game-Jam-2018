@@ -10,12 +10,19 @@ public class HUDManagerScript : MonoBehaviour
 	public const int RESUME_BUTTON = 1;
 	public const int ENTER_SHOP_BUTTON = 2;
 	public const int EXIT_SHOP_BUTTON = 3;
+	public const int QUIT_APPLICATION_BUTTON = 4;
+	public const int PLAY_GAME_BUTTON = 5;
+	public const int TITLE_SCREEN_BUTTON = 6;
 
 	private GameObject pauseMenu;
 	private GameObject inGameMenu;
+	private GameObject TitleMenu;
 	public GameObject shopMenu;
 
 	private Tienda tienda;
+
+
+	private int currentMenu;
 
 	void Awake()
 	{
@@ -23,7 +30,8 @@ public class HUDManagerScript : MonoBehaviour
 
 		pauseMenu = transform.Find("Pause Menu").gameObject;
 		inGameMenu = transform.Find("InGame Menu").gameObject;
-		//shopMenu = transform.Find("Tienda").gameObject;
+		TitleMenu = transform.Find("Title Menu").gameObject;
+
 		tienda = shopMenu.GetComponentInChildren<Tienda>();
 	}
 
@@ -43,6 +51,15 @@ public class HUDManagerScript : MonoBehaviour
 			case EXIT_SHOP_BUTTON:
 				CloseShop();
 				break;
+			case QUIT_APPLICATION_BUTTON:
+				ExitGame();
+				break;
+			case PLAY_GAME_BUTTON:
+				PlayGame();
+				break; 
+			case TITLE_SCREEN_BUTTON:
+				TittleScreen();
+				break;
 			default:
 				break;
 		}
@@ -55,6 +72,8 @@ public class HUDManagerScript : MonoBehaviour
 
 		inGameMenu.SetActive(false);
 		pauseMenu.SetActive(true);
+
+		currentMenu = 1;
 	}
 
 	void ResumeGame()
@@ -64,23 +83,49 @@ public class HUDManagerScript : MonoBehaviour
 
 		pauseMenu.SetActive(false);
 		inGameMenu.SetActive(true);
+
+		currentMenu = 0;
 	}
 
 	void OpenShop()
 	{
 
-		pauseMenu.SetActive(false);
-		inGameMenu.SetActive(false);
 
+		TitleMenu.SetActive(false);
 		shopMenu.SetActive(true);
-		tienda.EntrarTienda();
+
+		tienda.EntrarTienda(currentMenu);
+
+		currentMenu = 3;
 	}
 
 	void CloseShop()
 	{
 		inGameMenu.SetActive(false);
-		tienda.SalirTienda();
-		pauseMenu.SetActive(true);
+		TitleMenu.SetActive(true);
+
+		currentMenu = tienda.SalirTienda();
+	}
+
+	void ExitGame()
+	{
+		Application.Quit();
+	}
+
+	void PlayGame()
+	{
+		TitleMenu.SetActive(false);
+		inGameMenu.SetActive(true);
+
+		// Start Game
+	}
+
+	void TittleScreen()
+	{
+		pauseMenu.SetActive(false);
+		TitleMenu.SetActive(true);
+
+		//Back to the menu.
 	}
 	
 }
