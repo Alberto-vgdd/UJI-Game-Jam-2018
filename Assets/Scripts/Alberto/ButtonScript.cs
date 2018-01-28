@@ -97,8 +97,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 		
 		switch(nombre){
 		case "Salto":
-			if (GlobalData.experiencia >= tienda.PrecioSalto && GlobalData.saltoComprado == false) {
-				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioSalto;
+			if (GlobalData.experienciaTotal >= tienda.PrecioSalto && GlobalData.saltoComprado == false) {
+				GlobalData.experienciaTotal = GlobalData.experienciaTotal - tienda.PrecioSalto;
 				GlobalData.saltoComprado = true;
 				tienda.Actualizar ();
 
@@ -116,8 +116,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 			}
 			break;
 		case "DobleSalto":
-			if (GlobalData.experiencia >= tienda.PrecioDobleSalto && GlobalData.dobleSaltoComprado == false) {
-				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioDobleSalto;
+			if (GlobalData.experienciaTotal >= tienda.PrecioDobleSalto && GlobalData.dobleSaltoComprado == false) {
+				GlobalData.experienciaTotal = GlobalData.experienciaTotal - tienda.PrecioDobleSalto;
 				GlobalData.dobleSaltoComprado = true;
 				tienda.Actualizar ();
 
@@ -135,8 +135,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 			}
 			break;
 		case "Dash":
-			if (GlobalData.experiencia >= tienda.PrecioDash && GlobalData.dashComprado == false) {
-				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioDash;
+			if (GlobalData.experienciaTotal >= tienda.PrecioDash && GlobalData.dashComprado == false) {
+				GlobalData.experienciaTotal = GlobalData.experienciaTotal - tienda.PrecioDash;
 				GlobalData.dashComprado = true;
 				tienda.Actualizar ();
 				
@@ -154,8 +154,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 			}
 			break;
 		case "Girar":
-			if (GlobalData.experiencia >= tienda.PrecioGirar && GlobalData.girarComprado == false) {
-				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioGirar;
+			if (GlobalData.experienciaTotal >= tienda.PrecioGirar && GlobalData.girarComprado == false) {
+				GlobalData.experienciaTotal = GlobalData.experienciaTotal - tienda.PrecioGirar;
 				GlobalData.girarComprado = true;
 				tienda.Actualizar ();
 				
@@ -173,8 +173,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 			}
 			break;
 		case "Agacharse":
-			if (GlobalData.experiencia >= tienda.PrecioAgacharse && GlobalData.agacharseComprado == false) {
-				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioAgacharse;
+			if (GlobalData.experienciaTotal >= tienda.PrecioAgacharse && GlobalData.agacharseComprado == false) {
+				GlobalData.experienciaTotal = GlobalData.experienciaTotal - tienda.PrecioAgacharse;
 				GlobalData.agacharseComprado = true;
 				tienda.Actualizar ();
 				
@@ -192,8 +192,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 			}
 			break;
 		case "Secreto":
-			if (GlobalData.experiencia >= tienda.PrecioSecreto && GlobalData.secretoComprado == false) {
-				GlobalData.experiencia = GlobalData.experiencia - tienda.PrecioSecreto;
+			if (GlobalData.experienciaTotal >= tienda.PrecioSecreto && GlobalData.secretoComprado == false) {
+				GlobalData.experienciaTotal = GlobalData.experienciaTotal - tienda.PrecioSecreto;
 				GlobalData.secretoComprado = true;
 				tienda.Actualizar ();
 				
