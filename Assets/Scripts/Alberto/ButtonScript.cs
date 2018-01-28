@@ -44,7 +44,39 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 		buttonEnabled = true;
 
+		//COMPROBAR SI EL PRIMER SALTO ESTÁ COMPRADO
 		if (accion == "DobleSalto" && GlobalData.saltoComprado == false) {
+			buttonEnabled = false;
+			buttonGameObjects[1].SetActive(false);
+		}
+
+		//COMPROBAR SI EL RESTO DE MEJORAS ESTÁN COMPRADAS
+		if(accion == "Salto" && GlobalData.saltoComprado == true){
+			buttonEnabled = false;
+			buttonGameObjects[1].SetActive(false);
+		}
+
+		if(accion == "DobleSalto" && GlobalData.dobleSaltoComprado == true){
+			buttonEnabled = false;
+			buttonGameObjects[1].SetActive(false);
+		}
+
+		if(accion == "Dash" && GlobalData.dashComprado == true){
+			buttonEnabled = false;
+			buttonGameObjects[1].SetActive(false);
+		}
+
+		if(accion == "Girar" && GlobalData.girarComprado == true){
+			buttonEnabled = false;
+			buttonGameObjects[1].SetActive(false);
+		}
+
+		if(accion == "Agacharse" && GlobalData.agacharseComprado == true){
+			buttonEnabled = false;
+			buttonGameObjects[1].SetActive(false);
+		}
+
+		if(accion == "Secreto" && GlobalData.secretoComprado == true){
 			buttonEnabled = false;
 			buttonGameObjects[1].SetActive(false);
 		}
