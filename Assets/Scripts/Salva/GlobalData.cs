@@ -14,6 +14,19 @@ public class GlobalData : MonoBehaviour {
 	public static bool agacharseComprado;
 	public static bool secretoComprado;
 
+	public static GlobalData currentInstance;
+
+	void Awake()
+	{
+		if (currentInstance != null) 
+		{
+			Destroy (this);
+		}
+		else
+		{
+			currentInstance = this;
+		}
+	}
 
 
 	// Use this for initialization
