@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4864042623425396}
   - component: {fileID: 61603908898569952}
   - component: {fileID: 114294134358612102}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 5 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4064210604276644}
   - component: {fileID: 61883777153625320}
   - component: {fileID: 114135529643287224}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 4 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 2113883504181842654}
   m_Layer: 8
   m_Name: Tilemap Ground Lv 6
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4612542955787398}
   - component: {fileID: 61717032852673322}
   - component: {fileID: 114154508457400428}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 4 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 4649640117012270}
   - component: {fileID: 61016214079730008}
   - component: {fileID: 114602236865186312}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 3 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 4868833467596410}
   - component: {fileID: 61649117649501162}
   - component: {fileID: 114697623271414604}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 6 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 4459665709999898}
   - component: {fileID: 61054457422883356}
   - component: {fileID: 114670998798200258}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider 5 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24136,8 +24136,8 @@ Tilemap:
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
+      m_TileFlags: 0
+      m_ColliderType: 0
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 6
