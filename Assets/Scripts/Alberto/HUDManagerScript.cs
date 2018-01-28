@@ -50,8 +50,8 @@ public class HUDManagerScript : MonoBehaviour
 
 	void PauseGame()
 	{
-		Time.timeScale = 0;
-		Time.fixedDeltaTime = 0;
+		//Time.timeScale = 0;
+		//Time.fixedDeltaTime = 0;
 
 		inGameMenu.SetActive(false);
 		pauseMenu.SetActive(true);
@@ -59,8 +59,8 @@ public class HUDManagerScript : MonoBehaviour
 
 	void ResumeGame()
 	{
-		Time.timeScale = 1;
-		Time.fixedDeltaTime = 1/50f;
+		//Time.timeScale = 1;
+		//Time.fixedDeltaTime = 1/50f;
 
 		pauseMenu.SetActive(false);
 		inGameMenu.SetActive(true);
