@@ -41,7 +41,7 @@ public class StartGameBehaviour : MonoBehaviour {
 		playerReference.SetActive (true);
 	}
 
-	public void ActualizarUIDinero()	{	coinTextReference.text = ((int)GlobalData.currentInstance.expPlayer).ToString();	}
+	public void ActualizarUIDinero()	{	coinTextReference.text = ((int)(GlobalData.currentInstance.expPlayer * GlobalData.currentInstance.currentStreakExpPlayer)).ToString();	}
 
 	// Update is called once per frame
 	void Update () 
