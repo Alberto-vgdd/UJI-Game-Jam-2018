@@ -26,16 +26,16 @@ public class Tienda : MonoBehaviour {
 	public Text experienciaActual;
 	public Text distanciaMaxima;
 
-	private GameObject tienda;
+
 	private Animation animacionTienda;
 	private Animation animacionEstrellas;
 
-
+	private int previousHUDMenu;
 
 	// Use this for initialization
-	public void EntrarTienda () 
+	public void EntrarTienda (int previousHUDMenu) 
 	{
-		tienda = this.gameObject;
+		this.previousHUDMenu = previousHUDMenu;
 
 		if (GlobalData.saltoComprado) BotonSalto.EnableButton(false);
 		if (GlobalData.dobleSaltoComprado) BotonDobleSalto.EnableButton(false);
@@ -65,9 +65,10 @@ public class Tienda : MonoBehaviour {
 		distanciaMaxima.text = GlobalData.metros + "m";
 	}
 		
-	public void SalirTienda(){
+	public int SalirTienda(){
 		animacionTienda.Play ("TransicionFinalTienda");
 		StartCoroutine(EsperarSalir(1));
+		return previousHUDMenu;
 
 	}
 
