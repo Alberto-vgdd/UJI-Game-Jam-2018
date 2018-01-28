@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class StartGameBehaviour : MonoBehaviour {
 
 	public GameObject idleBedAnimation;
-
 	public GameObject startGameBedAnimation;
 
 	public GameObject playerReference;
+	public GameObject canvasPlayGameReference;
+	public GameObject shopCanvasReference;
 
 	public static StartGameBehaviour currentInstance;
 	private bool alreadyStarted = false;
@@ -18,7 +19,9 @@ public class StartGameBehaviour : MonoBehaviour {
 
 	void Awake()
 	{
+		alreadyStarted = false;
 		currentInstance = this;
+		playerReference.SetActive (false);
 	}
 
 	// Use this for initialization
@@ -44,7 +47,8 @@ public class StartGameBehaviour : MonoBehaviour {
 	void Update () 
 	{
 		ActualizarUIDinero ();	
-		if (Input.GetMouseButtonDown(0)) 
+		if (canvasPlayGameReference.activeInHierarchy == false && 
+			shopCanvasReference.activeInHierarchy == false) 
 		{
 			if (alreadyStarted == false) 
 			{

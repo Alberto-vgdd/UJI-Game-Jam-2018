@@ -132,7 +132,10 @@ public class HUDManagerScript : MonoBehaviour
 	void TittleScreen()
 	{
 		pauseMenu.SetActive(false);
-		TitleMenu.SetActive(true);
+		GlobalData.currentInstance.ResetStats ();
+		GlobalData.currentInstance.ResetScene ();
+		Time.timeScale = 1f;
+		//TitleMenu.SetActive(true);
 
 		//Back to the menu.
 	}
