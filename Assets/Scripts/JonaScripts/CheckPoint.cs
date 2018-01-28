@@ -36,10 +36,9 @@ public class CheckPoint : MonoBehaviour {
 
 	public void AsegurarDinero() {
 
-		GlobalData.experienciaTotal = GlobalData.experienciaTotal + (int) (GlobalData.currentInstance.expPlayer * 
-		GlobalData.currentInstance.currentStreakExpPlayer);
-		GlobalData.currentInstance.ResetStats ();
-		GlobalData.currentInstance.ResetScene ();
+		GlobalData.experienciaTotal = GlobalData.experienciaTotal + (int) (GlobalData.currentInstance.expPlayer * GlobalData.currentInstance.currentStreakExpPlayer);
+		//GlobalData.currentInstance.ResetStats ();
+		//GlobalData.currentInstance.ResetScene ();
         //Falta llamar al Game Over Cuando esté
     }
 
