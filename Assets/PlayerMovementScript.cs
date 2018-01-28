@@ -34,6 +34,9 @@ public class PlayerMovementScript : MonoBehaviour {
 	bool m_StartDashTimer = false;
 	bool m_StartTurnTimer = false;
 
+
+	public bool InCheckPoint;
+
 	Vector3 m_LastMousePosition;
 
 	public bool InCheckPoint = false;
@@ -61,7 +64,6 @@ public class PlayerMovementScript : MonoBehaviour {
 	void Start () {
 		m_OriginalMovementSpeed = m_MovementSpeed;
 		m_AvailableJumps = m_NumberOfJumps;
-		m_DashSpeed = 2*m_MovementSpeed;
 
 	}
 	
@@ -78,8 +80,9 @@ public class PlayerMovementScript : MonoBehaviour {
 			CheckForSlideTimer();
 		
 
-		if(m_StartDashTimer && m_IsDashing)
+		if(m_IsDashing)
 			CheckForDashTimer();
+
 
 		if (m_IsTurning) 
 		{
@@ -145,15 +148,12 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	void CheckForDashTimer(){
 		m_DashTimer += Time.deltaTime;
-		if(m_DashTimer >= 0.25f){
+		if(m_DashTimer >= .5f){
 
 			//TRANSICION A RUNNING DESDE DASH
-			
+			m_IsDashing = false;
 			SwitchState(AnimationStates.RUNNING);
-		}else{
-
-			//HACER DASH
-
+			m_PlayerAnimator.SetInteger("AnimationState",100);
 		}
 	}
 
@@ -180,17 +180,25 @@ public class PlayerMovementScript : MonoBehaviour {
 
 
 	void CheckIfGrounded(){
+		Debug.Log(m_CapsuleCollider2D.bounds.size);
 		RaycastHit2D[] hits;
-        hits = Physics2D.CapsuleCastAll(new Vector2(transform.position.x, transform.position.y), m_CapsuleCollider2D.bounds.size * 0.95f, CapsuleDirection2D.Vertical, 0f, Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
+        hits = Physics2D.CapsuleCastAll(new Vector2(transform.position.x, transform.position.y)+m_CapsuleCollider2D.offset, m_CapsuleCollider2D.bounds.size * 0.95f, CapsuleDirection2D.Vertical, 0f, Vector2.down, 1/16f, LayerMask.GetMask("Ground"));
         
 		if(hits.Length >=1){
-            m_IsGrounded = true;
 
-			// Tocamos el suelo después de falling
-			if(m_AnimationState == AnimationStates.FALLING)
+			foreach(RaycastHit2D hit in hits){
+				if(Vector2.Angle(transform.up, hit.normal) < 45f ){
+					m_IsGrounded = true;
 
-				// TRANSICION A RUNNING DESDE LANDING
-				SwitchState(AnimationStates.LANDING);
+						// Tocamos el suelo después de falling
+					if(m_AnimationState == AnimationStates.FALLING)
+
+					// TRANSICION A RUNNING DESDE LANDING
+					SwitchState(AnimationStates.LANDING);
+					break;	
+				}
+			}
+            
 				
         }else{
             m_IsGrounded = false;
@@ -222,8 +230,8 @@ public class PlayerMovementScript : MonoBehaviour {
 				// .
 				// .
 				// .
-				//if(!landingParticleSystem.isPlaying)
-					//landingParticleSystem.Play();
+
+				landingParticleSystem.Play();
 				// Sistema de partículas con polvillo...
 
 				SwitchState(AnimationStates.RUNNING);
@@ -262,9 +270,9 @@ public class PlayerMovementScript : MonoBehaviour {
 
 
 			case AnimationStates.TURN:
+
 				m_IsTurning = true;
 				m_TurnTimer = 0;
-				Debug.Log("AAAAAAAAAAA girado.");
 
 				m_PlayerAnimator.SetInteger("AnimationState",10);
 				m_MovementSpeed = Vector2.zero.x;
@@ -277,10 +285,11 @@ public class PlayerMovementScript : MonoBehaviour {
 
 
 			case AnimationStates.DASH:
-				m_MovementSpeed = m_DashSpeed;
-				m_DashTimer = 0;
-				m_StartDashTimer = true;
+
 				m_IsDashing = true;
+				
+				m_DashTimer = 0;
+				m_MovementSpeed = m_DashSpeed;
 				break;
 
 
@@ -327,8 +336,8 @@ public class PlayerMovementScript : MonoBehaviour {
 		{
 			if(m_IsGrounded && !m_IsTurning && !m_IsDashing && !m_IsSliding)
 			{
-				if (Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) > Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y)) 
-				//if (Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(0).deltaPosition.magnitude * Time.deltaTime > 1)
+				// if (Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) > Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y)) 
+				if (Input.GetTouch(0).phase == TouchPhase.Moved && Mathf.Abs(Input.GetTouch(0).deltaPosition.x * Time.deltaTime) > 1)
 				{
 					if (m_Orientation * (m_LastMousePosition.x - Input.mousePosition.x) > 0 )
 					{
@@ -341,13 +350,16 @@ public class PlayerMovementScript : MonoBehaviour {
 					{
 						SwitchState(AnimationStates.DASH);
 					}
-						
+
+					m_Pressed = false; 	
 				}
 
 
-				else if(Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) < Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y))
+				// else if(Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) < Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y))
+				if (Input.GetTouch(0).phase == TouchPhase.Moved && Mathf.Abs(Input.GetTouch(0).deltaPosition.y * Time.deltaTime) > 1)
 				{
 					SwitchState(AnimationStates.SLIDE);
+					m_Pressed = false; 
 				}
 			}
 
