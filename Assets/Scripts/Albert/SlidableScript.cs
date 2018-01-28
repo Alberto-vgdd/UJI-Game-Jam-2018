@@ -9,9 +9,9 @@ public class SlidableScript : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Player") 
 		{
-			if (other.gameObject.GetComponent<PlayerMovementScript> ().m_AnimationState == PlayerMovementScript.AnimationStates.SLIDE
-				|| other.gameObject.GetComponent<PlayerMovementScript>().m_IsDashing &&
-				other.gameObject.GetComponent<PlayerMovementScript> ().m_IsSliding) 
+			if (other.gameObject.GetComponentInParent<PlayerMovementScript> ().m_IsSliding
+				|| other.gameObject.GetComponentInParent<PlayerMovementScript>().m_IsDashing &&
+				other.gameObject.GetComponentInParent<PlayerMovementScript> ().m_IsSliding) 
 			{
 				DeactivateSlidable ();
 			}

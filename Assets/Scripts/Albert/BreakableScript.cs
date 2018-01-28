@@ -10,7 +10,7 @@ public class BreakableScript : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Player") 
 		{
-			if (other.gameObject.GetComponent<PlayerMovementScript> ().m_AnimationState == PlayerMovementScript.AnimationStates.DASH) 
+			if (other.gameObject.GetComponentInParent<PlayerMovementScript> ().m_IsDashing) 
 			{
 				Explosion ();
 			}
