@@ -18,18 +18,21 @@ public class PlayerMovementScript : MonoBehaviour {
 	public AnimationStates m_AnimationState;
 
 
-	bool m_Pressed;
+	public bool m_Pressed;
 	public int m_Orientation = 1;
 
 	public bool m_IsGrounded = false;
 	public bool m_IsDashing = false;
 	public bool m_IsSliding = false;
+	public bool m_IsTurning = false;
 	
 	private float m_SlideTimer;
 	private float m_DashTimer;
+	private float m_TurnTimer;
 
 	bool m_StartSliderTimer = false;
 	bool m_StartDashTimer = false;
+	bool m_StartTurnTimer = false;
 
 	Vector3 m_LastMousePosition;
 
@@ -42,6 +45,8 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	Animator m_PlayerAnimator;
 
+	ParticleSystem landingParticleSystem;
+
 
 
 	void Awake(){
@@ -50,6 +55,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		m_PlayerAnimator = GetComponentInChildren<Animator>();
 		m_SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+		landingParticleSystem = GetComponentInChildren<ParticleSystem>();
 	}
 	
 	void Start () {
@@ -66,7 +72,6 @@ public class PlayerMovementScript : MonoBehaviour {
 	void FixedUpdate(){
 
 		CheckIfGrounded();
-		CheckIfFalling();
 
 		
 		if(m_StartSliderTimer && m_IsSliding)
@@ -76,7 +81,11 @@ public class PlayerMovementScript : MonoBehaviour {
 		if(m_StartDashTimer && m_IsDashing)
 			CheckForDashTimer();
 
-		Move();
+		if(m_IsTurning)
+			CheckForTurnTimer();
+		else
+			Move();
+
 		Gravity();
 
 		UpdateCurrentPlayerCoins ();
@@ -140,11 +149,31 @@ public class PlayerMovementScript : MonoBehaviour {
 		}
 	}
 
+	void CheckForTurnTimer(){
+		
+		if(m_TurnTimer < 1/3f){		
+
+			m_TurnTimer += Time.deltaTime;	
+			
+
+		}else{
+
+			m_IsTurning = false;
+			SwitchState(AnimationStates.RUNNING);
+			m_Orientation = m_Orientation * (-1);
+			m_SpriteRenderer.flipX = (m_Orientation == 1) ? false : true;
+			m_PlayerAnimator.SetInteger("AnimationState",100);
+
+			
+			
+		}
+	}
+
 
 
 	void CheckIfGrounded(){
 		RaycastHit2D[] hits;
-        hits = Physics2D.CapsuleCastAll(new Vector2(transform.position.x, transform.position.y), m_CapsuleCollider2D.bounds.size, CapsuleDirection2D.Vertical, 0f, Vector2.down, 0.005f, LayerMask.GetMask("Ground"));
+        hits = Physics2D.CapsuleCastAll(new Vector2(transform.position.x, transform.position.y), m_CapsuleCollider2D.bounds.size * 0.95f, CapsuleDirection2D.Vertical, 0f, Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
         
 		if(hits.Length >=1){
             m_IsGrounded = true;
@@ -157,18 +186,12 @@ public class PlayerMovementScript : MonoBehaviour {
 				
         }else{
             m_IsGrounded = false;
+			m_AnimationState = AnimationStates.FALLING;
+			m_PlayerAnimator.SetInteger("AnimationState",8);
         }
 
 	}
-
-	void CheckIfFalling(){
-		if(m_Rigidbody2D.velocity.y < 0){
-			m_AnimationState = AnimationStates.FALLING;
-			m_PlayerAnimator.SetInteger("AnimationStates",8);
-		}
-			
-			
-	}
+	
 
 
 
@@ -187,9 +210,12 @@ public class PlayerMovementScript : MonoBehaviour {
 
 			case AnimationStates.LANDING:
 				m_PlayerAnimator.SetInteger("AnimationState",7);
+
 				// .
 				// .
 				// .
+				//if(!landingParticleSystem.isPlaying)
+					//landingParticleSystem.Play();
 				// Sistema de partículas con polvillo...
 
 				SwitchState(AnimationStates.RUNNING);
@@ -197,8 +223,12 @@ public class PlayerMovementScript : MonoBehaviour {
 
 
 			case AnimationStates.RUNNING:
+
 				m_IsDashing = false;
 				m_IsSliding = false;
+				m_IsTurning = false;
+				
+				
 				//m_PlayerAnimator.SetInteger("AnimationState",0);
 				m_MovementSpeed = m_OriginalMovementSpeed;
 				//m_StartSliderTimer = false;
@@ -218,15 +248,22 @@ public class PlayerMovementScript : MonoBehaviour {
 
 			case AnimationStates.FALLING:
 				if(m_IsGrounded)
-					SwitchState(AnimationStates.RUNNING);
+					SwitchState(AnimationStates.LANDING);
 				break;
 
 
 
 			case AnimationStates.TURN:
-				m_Orientation = m_Orientation * (-1);
-				m_SpriteRenderer.flipX = (m_Orientation == 1) ? false : true;
-				SwitchState(AnimationStates.RUNNING);
+				m_IsTurning = true;
+				m_TurnTimer = 0;
+				Debug.Log("AAAAAAAAAAA girado.");
+
+				m_PlayerAnimator.SetInteger("AnimationState",10);
+				m_MovementSpeed = Vector2.zero.x;
+			
+				
+			
+				
 				break;
 
 
@@ -249,6 +286,8 @@ public class PlayerMovementScript : MonoBehaviour {
 				m_StartSliderTimer = true;
 			
 				break;
+
+
 		}
 	}
 
@@ -278,14 +317,16 @@ public class PlayerMovementScript : MonoBehaviour {
 
         if (Input.GetMouseButton(0))
 		{
-			if(m_AnimationState != AnimationStates.JUMP)
+			if(m_IsGrounded && !m_IsTurning && !m_IsDashing && !m_IsSliding)
 			{
-				if (Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) > 
-					Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y))
+				if (Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) > Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y)) 
+				//if (Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(0).deltaPosition.magnitude * Time.deltaTime > 1)
 				{
-					if (m_Orientation * (m_LastMousePosition.x - Input.mousePosition.x) > 0)
+					if (m_Orientation * (m_LastMousePosition.x - Input.mousePosition.x) > 0 )
 					{
+
 						SwitchState(AnimationStates.TURN);
+						
 					}
 						
 					else
@@ -300,12 +341,6 @@ public class PlayerMovementScript : MonoBehaviour {
 				{
 					SwitchState(AnimationStates.SLIDE);
 				}
-			}
-			
-			if(Input.GetMouseButtonUp(0)){
-				m_IsDashing = false;
-				m_IsSliding = false;
-				SwitchState(AnimationStates.RUNNING);
 			}
 
 		}
