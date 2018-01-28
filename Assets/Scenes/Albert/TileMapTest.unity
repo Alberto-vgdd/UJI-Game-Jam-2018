@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4501986, g: 0.5002353, b: 0.5753998, a: 1}
+  m_IndirectSpecularColor: {r: 0.45019794, g: 0.50023454, b: 0.57539874, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -236,6 +236,74 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: HUDTiendaEntero
+      value: 
+      objectReference: {fileID: 2094438375}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: PrecioSalto
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: PrecioDobleSalto
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: PrecioDash
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: PrecioGirar
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: PrecioAgacharse
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: dineroSalto
+      value: 
+      objectReference: {fileID: 1852724569}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: dineroDobleSalto
+      value: 
+      objectReference: {fileID: 541823704}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: dineroDash
+      value: 
+      objectReference: {fileID: 1084671161}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: dineroGirar
+      value: 
+      objectReference: {fileID: 1851280853}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: dineroSecreto
+      value: 
+      objectReference: {fileID: 1192551223}
+    - target: {fileID: 114798760954334752, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+        type: 2}
+      propertyPath: dineroAgacharse
+      value: 
+      objectReference: {fileID: 1059993765}
+    - target: {fileID: 1579334194082382, guid: 4f2edb65a67271849a7c227d90f6f5d9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665746144490250, guid: 4f2edb65a67271849a7c227d90f6f5d9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -36.14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f2edb65a67271849a7c227d90f6f5d9, type: 2}
   m_IsPrefabParent: 0
@@ -244,6 +312,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1641962549176642, guid: 4cfe06fc6b832ee4ea6f15f6a54adaef,
     type: 2}
   m_PrefabInternal: {fileID: 100999873}
+--- !u!114 &541823704 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114404134238337808, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 209621071}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &762799826
 Prefab:
   m_ObjectHideFlags: 0
@@ -296,6 +370,18 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e769ef2ff1f9074b99065caece5a934, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1059993765 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114665937969634354, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 209621071}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1084671161 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114602444923419738, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 209621071}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1140398802 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114729801801841902, guid: bbbba94c2a0f561468b20045a0675fc4,
@@ -367,6 +453,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 38.015003, y: 45.044003, z: 95.41601}
+--- !u!114 &1192551223 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114310865145448502, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 209621071}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1216787497
 Prefab:
   m_ObjectHideFlags: 0
@@ -622,6 +714,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CameraTarget: {fileID: 1887191076}
   m_CameraSmoothTime: 0.1
+--- !u!114 &1851280853 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114383142106621736, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 209621071}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1852724569 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114113413041002688, guid: 4f2edb65a67271849a7c227d90f6f5d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 209621071}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1878263114
 Prefab:
   m_ObjectHideFlags: 0
