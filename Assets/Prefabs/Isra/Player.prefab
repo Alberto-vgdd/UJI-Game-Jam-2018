@@ -682,7 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MovementSpeed: 2
-  m_DashSpeed: 10
+  m_DashSpeed: 6
   m_JumpStrength: 7
   m_AvailableJumps: 0
   m_AnimationState: 0
