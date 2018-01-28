@@ -127,7 +127,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	void CheckForDashTimer(){
 		m_DashTimer += Time.deltaTime;
-		if(m_DashTimer >= 2.5f){
+		if(m_DashTimer >= 0.25f){
 
 			//TRANSICION A RUNNING DESDE DASH
 			
@@ -232,8 +232,8 @@ public class PlayerMovementScript : MonoBehaviour {
 
 			case AnimationStates.DASH:
 				m_MovementSpeed = m_DashSpeed;
-				//m_DashTimer = 0;
-				//m_StartDashTimer = true;
+				m_DashTimer = 0;
+				m_StartDashTimer = true;
 				m_IsDashing = true;
 				break;
 
