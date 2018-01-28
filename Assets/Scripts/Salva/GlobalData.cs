@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GlobalData : MonoBehaviour {
 
 	//Dinero total acumulado por el jugador: se actualizará 
 	//cada vez que el jugador llegue a un checkpoint.
-	public static int experienciaTotal = 0;
+	public static int experienciaTotal;
 	public static float metros;
 	public static bool saltoComprado;
 	public static bool dobleSaltoComprado;
@@ -19,23 +20,30 @@ public class GlobalData : MonoBehaviour {
 	public static GlobalData currentInstance;
 
 	//Dinero por run del jugador, que se reinicia cada vez que muere.
-	public float expPlayer = 0;
+	public float expPlayer;
 	public float currentStreakExpPlayer = 1f;
 
-	public Text coinTextReference;
-
-	public GameObject playerGameObjectReference;
+	public static GameObject playerGameObjectReference;
 
 	void Awake()
 	{
-		if (currentInstance != null) 
+		
+		if (currentInstance == null) 
+		{
+			DontDestroyOnLoad (gameObject);
+			currentInstance = this;
+
+			experienciaTotal = 0;
+			expPlayer = 0f;
+
+		}
+		else if (currentInstance != this) 
 		{
 			Destroy (this);
 		}
-		else
-		{
-			currentInstance = this;
-		}
+			
+
+		playerGameObjectReference = GameObject.FindGameObjectWithTag ("Player");
 	}
 
 	public void RestartExpPlayer()	{	expPlayer = 0f;	}
@@ -45,9 +53,22 @@ public class GlobalData : MonoBehaviour {
 	{
 		RestartExpPlayer (); 
 		RestartMultiplierExpPlayer ();
+	}	
+
+
+	public void KillingInTheNameOf()
+	{
+		/*
+		 * Aqui poner animacion de muerte del personaje.
+		 * Y carteles de "has perdido lol git gud"
+		 * 
+		 */
+
+		ResetStats ();
+		SceneManager.LoadScene (0); //Carga la escena situada en el 0 del orden de build.
 	}
-		
-	public void ActualizarUIDinero()	{	coinTextReference.text = ((int)expPlayer).ToString();	}
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -57,6 +78,6 @@ public class GlobalData : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		ActualizarUIDinero ();	
+		
 	}
 }
