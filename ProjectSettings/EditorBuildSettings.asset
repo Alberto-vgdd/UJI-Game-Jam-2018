@@ -12,5 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Alberto/Alberto-TestScene.unity
     guid: cb51eb515d54c9041aece00d8fa12bc4
   - enabled: 1
+    path: Assets/Scenes/Salva/PantallaInicio.unity
+    guid: 486cdc3161bba9444af33c5658454b9d
+  - enabled: 1
     path: Assets/Scenes/Albert/TileMapTest.unity
     guid: 43bac85a9b434b74f9f0c9982c5bc4fc

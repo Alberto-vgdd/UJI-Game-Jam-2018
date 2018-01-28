@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StartGameBehaviour : MonoBehaviour {
 
@@ -41,11 +42,17 @@ public class StartGameBehaviour : MonoBehaviour {
 		playerReference.SetActive (true);
 	}
 
-	public void ActualizarUIDinero()	{	coinTextReference.text = ((int)GlobalData.currentInstance.expPlayer).ToString();	}
+	public void ActualizarUIDinero()	{	coinTextReference.text = ((int)(GlobalData.currentInstance.expPlayer * GlobalData.currentInstance.currentStreakExpPlayer)).ToString();	}
+
 
 	// Update is called once per frame
 	void Update () 
 	{
+		if (GlobalData.secretoComprado) 
+		{
+			Destroy (GlobalData.currentInstance);
+			SceneManager.LoadScene (0);	
+		}
 		ActualizarUIDinero ();	
 		if (canvasPlayGameReference.activeInHierarchy == false && 
 			shopCanvasReference.activeInHierarchy == false) 

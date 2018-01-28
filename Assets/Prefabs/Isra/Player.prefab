@@ -65,7 +65,6 @@ GameObject:
   - component: {fileID: 70633136819909858}
   - component: {fileID: 114335752132152118}
   - component: {fileID: 114448265916348030}
-  - component: {fileID: 114431944973497302}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -652,24 +651,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1641962549176642}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 044b3bf5c186cea4cb4814d88633ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4622813829704150}
---- !u!114 &114431944973497302
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1641962549176642}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 044b3bf5c186cea4cb4814d88633ca3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 4622813829704150}
+  player: {fileID: 1641962549176642}
 --- !u!114 &114448265916348030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -681,9 +668,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8b10cc3934c444d86e0e862f1c2ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementSpeed: 2
-  m_DashSpeed: 6
-  m_JumpStrength: 7
+  m_MovementSpeed: 5
+  m_DashSpeed: 10
+  m_JumpStrength: 10
   m_AvailableJumps: 0
   m_AnimationState: 0
   m_Pressed: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
 {
@@ -86,7 +87,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 	void Update(){
 		if (accion == "DobleSalto" && GlobalData.saltoComprado == true) {
 			buttonEnabled = true;
-			buttonGameObjects[1].SetActive(true);
+			buttonGameObjects[0].SetActive(true);
 		}
 	}
 
@@ -140,6 +141,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 	{
 		
 		switch(nombre){
+		case "CargarNivel":
+			SceneManager.LoadScene ("TileMapTest");
+			break;
+
 		case "Salto":
 			if (GlobalData.experienciaTotal >= tienda.PrecioSalto && GlobalData.saltoComprado == false) {
 				GlobalData.experienciaTotal = GlobalData.experienciaTotal - tienda.PrecioSalto;
