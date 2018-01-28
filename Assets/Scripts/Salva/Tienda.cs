@@ -61,7 +61,7 @@ public class Tienda : MonoBehaviour {
 	}
 
 	public void Actualizar(){
-		experienciaActual.text = GlobalData.experiencia + "xp";
+		experienciaActual.text = GlobalData.experienciaTotal + "xp";
 		distanciaMaxima.text = GlobalData.metros + "m";
 	}
 		

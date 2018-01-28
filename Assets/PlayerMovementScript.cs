@@ -44,8 +44,6 @@ public class PlayerMovementScript : MonoBehaviour {
 
 
 
-
-
 	void Awake(){
 		m_CapsuleCollider2D = GetComponent<CapsuleCollider2D>();
 		m_PlayerAudioManager = GetComponentInChildren<PlayerAudioManager>();
@@ -58,6 +56,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		m_OriginalMovementSpeed = m_MovementSpeed;
 		m_AvailableJumps = m_NumberOfJumps;
 		m_DashSpeed = 2*m_MovementSpeed;
+
 	}
 	
 	void Update () {
@@ -79,6 +78,9 @@ public class PlayerMovementScript : MonoBehaviour {
 
 		Move();
 		Gravity();
+
+		UpdateCurrentPlayerCoins ();
+
 	}
 
 
@@ -310,6 +312,15 @@ public class PlayerMovementScript : MonoBehaviour {
 		}
      
 			
+
+	}
+
+	void UpdateCurrentPlayerCoins()
+	{
+		if ((m_Rigidbody2D.velocity.magnitude * Time.deltaTime / 2f) >= 0.04f) 
+		{
+			GlobalData.currentInstance.expPlayer = GlobalData.currentInstance.expPlayer + (m_Rigidbody2D.velocity.magnitude * Time.deltaTime / 2f);
+		}
 
 	}
 
