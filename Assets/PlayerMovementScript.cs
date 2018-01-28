@@ -35,7 +35,6 @@ public class PlayerMovementScript : MonoBehaviour {
 	bool m_StartTurnTimer = false;
 
 
-	public bool InCheckPoint;
 
 	Vector3 m_LastMousePosition;
 
@@ -336,8 +335,8 @@ public class PlayerMovementScript : MonoBehaviour {
 		{
 			if(m_IsGrounded && !m_IsTurning && !m_IsDashing && !m_IsSliding)
 			{
-				// if (Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) > Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y)) 
-				if (Input.GetTouch(0).phase == TouchPhase.Moved && Mathf.Abs(Input.GetTouch(0).deltaPosition.x * Time.deltaTime) > 1)
+				 if (Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) > Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y)) 
+				//if (Input.GetTouch(0).phase == TouchPhase.Moved && Mathf.Abs(Input.GetTouch(0).deltaPosition.x * Time.deltaTime) > 1)
 				{
 					if (m_Orientation * (m_LastMousePosition.x - Input.mousePosition.x) > 0 )
 					{
@@ -355,8 +354,8 @@ public class PlayerMovementScript : MonoBehaviour {
 				}
 
 
-				// else if(Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) < Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y))
-				if (Input.GetTouch(0).phase == TouchPhase.Moved && Mathf.Abs(Input.GetTouch(0).deltaPosition.y * Time.deltaTime) > 1)
+				 else if(Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) < Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y))
+				//if (Input.GetTouch(0).phase == TouchPhase.Moved && Mathf.Abs(Input.GetTouch(0).deltaPosition.y * Time.deltaTime) > 1)
 				{
 					SwitchState(AnimationStates.SLIDE);
 					m_Pressed = false; 
