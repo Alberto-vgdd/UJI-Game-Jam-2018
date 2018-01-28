@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
 
     public float m_MovementSpeed;
     public float m_JumpStrength;
     public float m_jumps;
+    public Text m_CoinsCount;
+
 
     Rigidbody2D m_Rigidbody2D;
     CapsuleCollider2D m_CapsuleCollider2D;
@@ -18,7 +21,9 @@ public class PlayerMovement : MonoBehaviour {
     float m_DistanceToGround;
     float m_direction = 1;
     float m_CounterTurn = 0;
+    float m_Coins = 0;
 
+    Vector3 m_PosAnt;
     Vector3 m_mouse;
     bool m_Presed = false;
     bool m_IsMoving = false;
@@ -38,6 +43,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Awake () 
     {
+        m_PosAnt = transform.position;
         m_CapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         m_DistanceToGround = m_CapsuleCollider2D.bounds.extents.y;
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -135,6 +141,11 @@ public class PlayerMovement : MonoBehaviour {
 
     void Move()
     {
+        //Monedas
+        m_Coins = m_Coins + Mathf.Abs(Vector3.Distance(m_PosAnt, transform.position));
+        m_PosAnt = transform.position;
+        m_CoinsCount.text = " " + (int)m_Coins;
+
         Vector2 desiredVelocity = new Vector2(m_MovementSpeed * m_direction, m_Rigidbody2D.velocity.y);
 
         RaycastHit2D[] hits = Physics2D.CapsuleCastAll(new Vector2(transform.position.x, transform.position.y) + m_CapsuleCollider2D.offset, m_CapsuleCollider2D.bounds.size, CapsuleDirection2D.Horizontal, 0f, Vector2.right * m_direction, m_Rigidbody2D.velocity.x * Time.deltaTime, LayerMask.GetMask("Ground"));
