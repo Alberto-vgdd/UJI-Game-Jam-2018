@@ -73,7 +73,7 @@ public class GlobalData : MonoBehaviour {
 
 	public void ResetScene()
 	{
-		SceneManager.LoadScene (0); //Carga la escena situada en el 0 del orden de build.
+		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex); //Carga la escena situada en el 0 del orden de build.
 	}
 
 	// Use this for initialization
