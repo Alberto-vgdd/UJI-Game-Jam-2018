@@ -26,6 +26,13 @@ public class Tienda : MonoBehaviour {
 	public Text experienciaActual;
 	public Text distanciaMaxima;
 
+	public Text dineroSalto;
+	public Text dineroDobleSalto;
+	public Text dineroDash;
+	public Text dineroGirar;
+	public Text dineroAgacharse;
+	public Text dineroSecreto;
+
 
 	private Animation animacionTienda;
 	private Animation animacionEstrellas;
@@ -43,7 +50,7 @@ public class Tienda : MonoBehaviour {
 		if (GlobalData.girarComprado) BotonGirar.EnableButton(false);
 		if (GlobalData.agacharseComprado) BotonAgacharse.EnableButton(false);
 		if (GlobalData.secretoComprado) BotonSecreto.EnableButton(false);
-		Actualizar ();
+
 
 		animacionTienda = this.gameObject.GetComponent<Animation> ();
 		animacionTienda.Play ("TransicionInicialTienda",PlayMode.StopAll);
@@ -52,17 +59,26 @@ public class Tienda : MonoBehaviour {
 		animacionEstrellas = fondoEstrellas.GetComponent<Animation> ();
 		animacionEstrellas.Play ("TransicionInicialEstrellas",PlayMode.StopAll);
 
-		Debug.Log("123123");
+		Actualizar ();
+
+		dineroSalto.text = PrecioSalto + "xp";
+		dineroDobleSalto.text = PrecioDobleSalto + "xp";
+		dineroDash.text = PrecioDash + "xp";
+		dineroGirar.text = PrecioGirar + "xp";
+		dineroAgacharse.text = PrecioAgacharse + "xp";
+		dineroSecreto.text = PrecioSecreto + "xp";
+
+		distanciaMaxima.text = GlobalData.metros + "m"; //Esto solo se actualiza cuando se abre la tienda ya que mientras no corre el personaje.
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		experienciaActual.text = GlobalData.experienciaTotal + "xp";
 	}
 
 	public void Actualizar(){
 		experienciaActual.text = GlobalData.experienciaTotal + "xp";
-		distanciaMaxima.text = GlobalData.metros + "m";
 	}
 		
 	public int SalirTienda(){
@@ -83,7 +99,6 @@ public class Tienda : MonoBehaviour {
 
 	IEnumerator EsperarSalir2(int segundos)
 	{
-		
 		yield return new WaitForSeconds(segundos);
 		HUDTiendaEntero.SetActive(false);
 	}
