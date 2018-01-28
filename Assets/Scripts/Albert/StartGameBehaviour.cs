@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartGameBehaviour : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class StartGameBehaviour : MonoBehaviour {
 
 	public static StartGameBehaviour currentInstance;
 	private bool alreadyStarted = false;
+
+	public Text coinTextReference;
 
 	void Awake()
 	{
@@ -35,12 +38,12 @@ public class StartGameBehaviour : MonoBehaviour {
 		playerReference.SetActive (true);
 	}
 
-
+	public void ActualizarUIDinero()	{	coinTextReference.text = ((int)GlobalData.currentInstance.expPlayer).ToString();	}
 
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		ActualizarUIDinero ();	
 		if (Input.GetMouseButtonDown(0)) 
 		{
 			if (alreadyStarted == false) 
