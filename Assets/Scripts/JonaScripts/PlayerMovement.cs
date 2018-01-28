@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
     public float m_JumpStrength;
     public float m_jumps;
     public Text m_CoinsCount;
+    public float m_Coins = 0;
 
 
     Rigidbody2D m_Rigidbody2D;
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour {
     float m_DistanceToGround;
     float m_direction = 1;
     float m_CounterTurn = 0;
-    float m_Coins = 0;
+    
 
     Vector3 m_PosAnt;
     Vector3 m_mouse;
