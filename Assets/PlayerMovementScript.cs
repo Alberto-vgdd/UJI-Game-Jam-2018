@@ -11,7 +11,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	public float m_JumpStrength;
 
-	private int m_NumberOfJumps = 2;
+	private int m_NumberOfJumps = 0;
 	public int m_AvailableJumps;
 
 	public enum AnimationStates{RUNNING, JUMP, DASH, FALLING, TURN, SLIDE, LANDING}
@@ -211,6 +211,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
 
 	void RestartJumpsIfNeeded(){
+        JumpBought();
 		if(m_AvailableJumps <= 1)
 			m_AvailableJumps = m_NumberOfJumps;
 	}
@@ -338,14 +339,14 @@ public class PlayerMovementScript : MonoBehaviour {
 				 if (Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) > Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y)) 
 				//if (Input.GetTouch(0).phase == TouchPhase.Moved && Mathf.Abs(Input.GetTouch(0).deltaPosition.x * Time.deltaTime) > 1)
 				{
-					if (m_Orientation * (m_LastMousePosition.x - Input.mousePosition.x) > 0 )
+					if (m_Orientation * (m_LastMousePosition.x - Input.mousePosition.x) > 0 && TurnBought())
 					{
 
 						SwitchState(AnimationStates.TURN);
 						
 					}
 						
-					else
+					else if(DashBought())
 					{
 						SwitchState(AnimationStates.DASH);
 					}
@@ -354,7 +355,7 @@ public class PlayerMovementScript : MonoBehaviour {
 				}
 
 
-				 else if(Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) < Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y))
+				 else if(Mathf.Abs(m_LastMousePosition.x - Input.mousePosition.x) < Mathf.Abs(m_LastMousePosition.y - Input.mousePosition.y) && SlideBought())
 				//if (Input.GetTouch(0).phase == TouchPhase.Moved && Mathf.Abs(Input.GetTouch(0).deltaPosition.y * Time.deltaTime) > 1)
 				{
 					SwitchState(AnimationStates.SLIDE);
@@ -376,6 +377,49 @@ public class PlayerMovementScript : MonoBehaviour {
 		}
 
 	}
+
+    void JumpBought()
+    {
+
+        if (GlobalData.saltoComprado)
+        {
+
+            if (GlobalData.dobleSaltoComprado)
+            {
+
+                m_NumberOfJumps = 2;
+            }
+            else { m_NumberOfJumps = 1; }
+
+        }
+
+    }
+
+    bool TurnBought()
+    {
+
+        return GlobalData.girarComprado;
+
+    }
+
+    bool SlideBought()
+    {
+
+        return GlobalData.agacharseComprado;
+    }
+
+    bool DashBought()
+    {
+
+        return GlobalData.dashComprado;
+
+    }
+
+    bool SecretBought()
+    {
+
+        return GlobalData.secretoComprado;
+    }
 
 
 }
