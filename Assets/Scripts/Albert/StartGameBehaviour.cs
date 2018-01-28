@@ -11,6 +11,7 @@ public class StartGameBehaviour : MonoBehaviour {
 	public GameObject playerReference;
 
 	public static StartGameBehaviour currentInstance;
+	private bool alreadyStarted = false;
 
 	void Awake()
 	{
@@ -39,9 +40,15 @@ public class StartGameBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKeyDown (KeyCode.Space)) 
+		
+		if (Input.GetMouseButtonDown(0)) 
 		{
-			StartGameBehaviour.currentInstance.StartGameAnimation ();
+			if (alreadyStarted == false) 
+			{
+				StartGameBehaviour.currentInstance.StartGameAnimation ();
+				alreadyStarted = true;
+			}
+
 		}
 	}
 }
