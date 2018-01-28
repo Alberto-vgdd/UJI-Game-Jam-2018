@@ -21,10 +21,10 @@ public class PlayerDeathScript : MonoBehaviour {
 
         count = count - Time.deltaTime;
         if (count <= 0 && !m_IsDead) {
-			if (!player.gameObject.GetComponent<PlayerMovementScript> ().InCheckPoint) 
-			{
+			//if (!player.gameObject.GetComponent<PlayerMovementScript> ().InCheckPoint) 
+		//	{
 				CheckDeath();
-			}
+		//	}
             count = 0.4f;
 
         }

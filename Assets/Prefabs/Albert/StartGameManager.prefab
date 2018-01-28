@@ -150,6 +150,8 @@ MonoBehaviour:
   idleBedAnimation: {fileID: 1735199471718524}
   startGameBedAnimation: {fileID: 1887118733831066}
   playerReference: {fileID: 0}
+  canvasPlayGameReference: {fileID: 0}
+  shopCanvasReference: {fileID: 0}
   coinTextReference: {fileID: 0}
 --- !u!212 &212360387889123304
 SpriteRenderer:

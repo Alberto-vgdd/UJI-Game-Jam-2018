@@ -39,7 +39,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	Vector3 m_LastMousePosition;
 
-
+	public bool InCheckPoint = false;
 
 	CapsuleCollider2D m_CapsuleCollider2D;
 	PlayerAudioManager m_PlayerAudioManager;
@@ -83,12 +83,16 @@ public class PlayerMovementScript : MonoBehaviour {
 		if(m_IsDashing)
 			CheckForDashTimer();
 
-		if(m_IsTurning)
-			CheckForTurnTimer();
-		else{
 
-			if(!InCheckPoint){
-				Move();
+		if (m_IsTurning) 
+		{
+			CheckForTurnTimer ();
+		}
+		else 
+		{
+			if (!InCheckPoint) 
+			{
+				Move ();
 			}
 		}
 			
