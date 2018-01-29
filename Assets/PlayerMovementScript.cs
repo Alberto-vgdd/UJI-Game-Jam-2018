@@ -67,7 +67,12 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 	
 	void Update () {
-		HandleInput();
+
+        if (!InCheckPoint) {
+
+            HandleInput();
+        }
+		
 	}
 
 	void FixedUpdate(){
